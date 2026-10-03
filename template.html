@@ -39,9 +39,10 @@
   #baton .bg { left: 0; top: 0; width: 1920px; height: 1100px; background: #0b0b1b; transition: background 1.6s; }
   #baton .glow { left: -524.4px; top: 0; width: 2969.8px; height: 1792.4px; transition: transform 1.8s cubic-bezier(.65, 0, .35, 1); }
   #baton .noise { left: 0; top: 0; width: 1920px; height: 1100px; background: url(assets/noise.png); }
-  #baton .hand { left: 430.8997px; top: -110.8205px; width: 1057.492px; height: 1321.393px; mix-blend-mode: multiply; filter: brightness(var(--hb, .1)); transform: rotate(-2.01deg); }
+  #baton .hand { left: 430.8997px; top: -110.8205px; width: 1057.492px; height: 1321.393px; transform: rotate(-2.01deg); -webkit-mask-image: linear-gradient(180deg, transparent, #000 90px); mask-image: linear-gradient(180deg, transparent, #000 90px); }
+  /* hand.png 은 피그마의 multiply + 어둡게 처리를 미리 구워둔 것 (브라우저 합성과 무관하게 항상 어둡게) */
   .on .hand { animation: handup 3.2s cubic-bezier(.22, 1, .36, 1) .2s both; }
-  @keyframes handup { from { opacity: 0; transform: translateY(260px) rotate(-2.01deg); } to { opacity: 1; transform: rotate(-2.01deg); } }
+  @keyframes handup { from { opacity: 0; transform: translateY(85px) rotate(-2.01deg); } to { opacity: 1; transform: rotate(-2.01deg); } }
   #baton .handwrap, #baton .vid { transition: opacity 1.4s ease-in-out; }
   #baton .vid { left: 854px; top: 132px; width: 212px; height: 817px; border-radius: 19px; overflow: hidden; isolation: isolate; opacity: 0; }
   #baton .vid > * { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 19px; }
