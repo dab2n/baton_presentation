@@ -409,14 +409,14 @@
     });
     history.replaceState(null, '', '#' + (n + 1));
   }
-  // 9장: 왼쪽 반지 영상이 끝나면(제스처) 오른쪽 로봇 화면 UI 재생 → 5초쯤 설명 등장
+  // 9장: 왼쪽 반지 영상이 끝나면(제스처) 오른쪽 로봇 화면 UI 재생 → 2초쯤 설명 등장
   const s9L = document.getElementById('s9flick'), s9R = document.getElementById('s9screen');
   s9R.src = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) ? 'assets/s9-screen.mov' : 'assets/s9-screen.webm';  // 투명 영상: 사파리는 HEVC, 그 외 VP9
   s9L.addEventListener('ended', () => { if (s9L.closest('.slide').classList.contains('on')) { s9R.currentTime = 0; s9R.play(); } });
   s9R.addEventListener('playing', () => s9R.closest('.slide').classList.add('playing'));  // 영상 시작에 맞춰 푸른 빛 상승
-  // 설명은 화면 UI 영상이 5초쯤 재생됐을 때 등장 (짧게 끝나는 경우 대비해 ended 도 같이)
+  // 설명은 화면 UI 영상이 2초쯤(푸른 빛이 다 올라왔을 때) 등장, ended 는 대비용
   const s9Done = () => s9R.closest('.slide').classList.add('done');
-  s9R.addEventListener('timeupdate', () => { if (s9R.currentTime >= 5) s9Done(); });
+  s9R.addEventListener('timeupdate', () => { if (s9R.currentTime >= 2) s9Done(); });
   s9R.addEventListener('ended', s9Done);
   // data-replay="초": 끝나면 그만큼 쉬었다가 처음부터 다시 (그 장에 있을 때만)
   document.querySelectorAll('video[data-replay]').forEach(v => v.addEventListener('ended', () => setTimeout(() => {
