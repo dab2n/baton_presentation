@@ -21,7 +21,7 @@ def g(els, dx=0, dy=0, cls='a', style=''):
     return f'<g class="{cls}"{st}><g transform="translate({dx:g} {dy:g})">' + ''.join(els) + '</g></g>'
 
 out = {}
-for n in ['c377', 'c378', 'c379', 'c380', 'c381', 'ringA']:
+for n in ['c377', 'c378', 'c379', 'c380', 'c381', 'ringA', 'ringB']:
     dx, dy, els = parts(n)
     out[n] = ''.join(els) if n.startswith('ring') else g(els, dx, dy)
     out[n + '_xy'] = f'{dx:g} {dy:g}'
