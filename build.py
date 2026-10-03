@@ -57,7 +57,7 @@ for n in ('sc1t', 'sc2t', 'sc3t'):
     rows = [[], [], []]
     for el in els:
         y = first_y(el)  # 프레임 기준: 라벨 < 30 < 제목 < 140 < 설명
-        rows[0 if y < 30 else 1 if y < 140 else 2].append(el)
+        rows[0 if y < 30 else 1 if y < 150 else 2].append(el)
     out[n] = ''.join(g(r, dx, dy, style=f'--k:blurup; --t:1.2s; --d:{0.15 + i * 0.15:.2f}s') for i, r in enumerate(rows))
 
 html = (root / 'template.html').read_text()
