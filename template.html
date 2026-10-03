@@ -7,15 +7,17 @@
 <style>
   html, body { margin: 0; height: 100%; background: #111; overflow: hidden; }
   .stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: 0 0; overflow: clip; background: #fff; }
-  .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .6s, visibility 0s .6s; }
-  .slide.on { opacity: 1; visibility: visible; transition: opacity .6s; }
+  /* 들어오는 장이 나가는 장 위로 덮이며 페이드 (나가는 장은 .prev 로 끝까지 불투명 유지 → 중간에 흰 바탕이 비치지 않음) */
+  .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; }
+  .slide.prev { opacity: 1; visibility: visible; z-index: 1; }
+  .slide.on { opacity: 1; visibility: visible; z-index: 2; transition: opacity var(--fade, .6s) ease; }
   .abs, .slide img, .slide svg.full { position: absolute; display: block; }
   svg.full { left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
   svg g, svg path { transform-box: fill-box; }
 
   /* 등장 모션: .on 이 붙을 때마다 다시 재생 */
   .a { opacity: 0; }
-  .on .a { animation: var(--k, up) var(--t, 1s) var(--e, cubic-bezier(.16, 1, .3, 1)) var(--d, 0s) both; }
+  .on .a { animation: var(--k, up) var(--t, 1s) var(--e, cubic-bezier(.16, 1, .3, 1)) calc(var(--d, 0s) + var(--sd, 0s)) both; }
   @keyframes up   { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
   @keyframes rise { from { opacity: 0; transform: translateY(90px); } to { opacity: 1; transform: none; } }
@@ -44,7 +46,7 @@
   #baton .noise { left: 0; top: 0; width: 1920px; height: 1100px; background: url(assets/noise.png); }
   #baton .hand { left: 430.8997px; top: -110.8205px; width: 1057.492px; height: 1321.393px; transform: rotate(-2.01deg); -webkit-mask-image: linear-gradient(180deg, transparent, #000 90px); mask-image: linear-gradient(180deg, transparent, #000 90px); }
   /* hand.png 은 피그마의 multiply + 어둡게 처리를 미리 구워둔 것 (브라우저 합성과 무관하게 항상 어둡게) */
-  .on .hand { animation: handup 3.2s cubic-bezier(.22, 1, .36, 1) .2s both; }
+  .on .hand { animation: handup 3.2s cubic-bezier(.22, 1, .36, 1) calc(.2s + var(--sd, 0s)) both; }
   @keyframes handup { from { opacity: 0; transform: translateY(85px) rotate(-2.01deg); } to { opacity: 1; transform: rotate(-2.01deg); } }
   #baton .handwrap, #baton .vid { transition: opacity 1.4s ease-in-out; }
   #baton .vid { left: 854px; top: 132px; width: 212px; height: 817px; border-radius: 19px; overflow: hidden; isolation: isolate; opacity: 0; }
@@ -107,7 +109,7 @@
   <section class="slide" id="ring" data-steps="2" data-step="0">
     <div class="abs card1 ease a" style="--k:zoom"></div>
     <div class="abs a" style="inset:0; --d:.2s; --t:1.3s"><img class="ringimg ease" src="assets/ring.png" alt="baton 반지"></div>
-    <svg class="full bi" viewBox="0 0 1920 1080" style="--d:.7s"><g transform="translate(94 847)"><!--T:ringA--></g></svg>
+    <svg class="full bi" viewBox="0 0 1920 1080" style="--d:1.9s"><g transform="translate(94 847)"><!--T:ringA--></g></svg>
     <img class="bi bx" src="assets/card-hand.png" style="left:966px; top:46px; width:448px; height:588px; --d:.7s" alt="">
     <img class="bi bx" src="assets/card-side.png" style="left:1426px; top:46px; width:448px; height:588px; --d:.8s" alt="">
     <div class="abs bi bx" style="left:966px; top:646px; width:908px; height:388px; --d:.9s"><div class="abs" style="inset:0; border-radius:50px; overflow:hidden; background:#f9f9f9;"><img src="assets/user-glow.svg" style="left:-132px; top:29.5px; width:1173px; height:847px;" alt=""><img src="assets/ring-top.png" style="left:210px; top:0; width:488.5px; height:388px;" alt=""><svg class="abs" style="left:0; top:0; width:908px; height:388px; overflow:visible" viewBox="0 0 908 388"><svg x="166.92" y="240.28" width="575.932" height="264.811" viewBox="0 0 575.932 264.811" overflow="visible">
@@ -137,11 +139,11 @@
 </linearGradient>
 </defs>
 </svg><svg x="340.99" y="92" width="228" height="102" viewBox="0 0 228 102" overflow="visible"><defs><filter id="cuWob" x="-10%" y="-25%" width="120%" height="150%"><feTurbulence type="fractalNoise" baseFrequency="0.016 0.04" numOctaves="2" seed="7" result="n"><animate attributeName="baseFrequency" values="0.016 0.04;0.021 0.034;0.017 0.045;0.016 0.04" dur="11s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="12" xChannelSelector="R" yChannelSelector="G"><animate attributeName="scale" values="9;16;9" dur="7s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/></feDisplacementMap></filter><filter id="cuBlur" x="0" y="0" width="228" height="102" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="10"/></filter><clipPath id="cuStroke"><path d="M206 45.0083H204C204 46.0623 203.566 47.4133 202.47 49.0454C201.383 50.6653 199.723 52.4405 197.49 54.2995C193.026 58.0164 186.472 61.9021 178.264 65.432C161.86 72.4862 139.128 78 114 78V80V82C139.682 82 162.95 76.3715 179.844 69.1066C188.284 65.4769 195.203 61.4089 200.05 57.3735C202.473 55.3564 204.428 53.3059 205.791 51.2749C207.147 49.256 208 47.131 208 45.0083H206ZM114 80V78C88.8717 78 66.1401 72.4862 49.7363 65.432C41.528 61.9021 34.9737 58.0164 30.5095 54.2995C28.2767 52.4405 26.6172 50.6653 25.5296 49.0454C24.434 47.4133 24 46.0623 24 45.0083H22H20C20 47.131 20.8532 49.256 22.2086 51.2749C23.5721 53.3059 25.5274 55.3564 27.9501 57.3735C32.7969 61.4089 39.7156 65.4769 48.1561 69.1066C65.0497 76.3715 88.3182 82 114 82V80ZM22 45.0083H24C24 42.9748 25.6961 40.4653 30.2477 37.774C34.6657 35.1617 41.1918 32.7399 49.4314 30.6792C65.8799 26.5656 88.7092 24 114 24V22V20C88.4806 20 65.3099 22.585 48.4609 26.7987C40.0518 28.9018 33.1048 31.4378 28.2119 34.3308C23.4527 37.1449 20 40.6882 20 45.0083H22ZM114 22V24C139.291 24 162.12 26.5656 178.569 30.6792C186.808 32.7399 193.334 35.1617 197.752 37.774C202.304 40.4653 204 42.9748 204 45.0083H206H208C208 40.6882 204.547 37.1449 199.788 34.3308C194.895 31.4378 187.948 28.9018 179.539 26.7987C162.69 22.585 139.519 20 114 20V22Z"/></clipPath></defs><g filter="url(#cuWob)"><g filter="url(#cuBlur)"><path d="M206 45.0083C206 57.7154 164.81 80 114 80C63.1898 80 22 57.7154 22 45.0083C22 32.3012 63.1898 22 114 22C164.81 22 206 32.3012 206 45.0083Z" fill="white"/><foreignObject x="0" y="0" width="228" height="102" clip-path="url(#cuStroke)"><div xmlns="http://www.w3.org/1999/xhtml" style="width:228px;height:102px;background:conic-gradient(from 180deg at 114px 45.0083px, rgb(254,241,100), rgb(200,238,255))"></div></foreignObject></g></g></svg></svg></div><div class="abs" style="left:-.5px; top:-.5px; width:909px; height:389px; box-sizing:border-box; border:1px solid #e0e0e0; border-radius:50.5px;"></div></div>
-    <svg class="full bi" viewBox="0 0 1920 1080" style="--d:.75s"><g transform="translate(1008 847)"><!--T:ringB--></g></svg>
+    <svg class="full bi" viewBox="0 0 1920 1080" style="--d:1.9s"><g transform="translate(1008 847)"><!--T:ringB--></g></svg>
   </section>
 
   <!-- 6·7 바톤 (클릭 한 번 더 → 영상으로 dissolve) -->
-  <section class="slide" id="baton" data-steps="2" data-step="0">
+  <section class="slide" id="baton" data-steps="2" data-step="0" data-dark>
     <div class="abs bg"></div>
     <img class="glow" src="assets/glow.svg" alt="">
     <div class="abs noise"></div>
@@ -154,7 +156,7 @@
   </section>
 
   <!-- 9 Grip, and Drop: 반지 영상 + 인터랙션 -->
-  <section class="slide" style="background:#000">
+  <section class="slide" style="background:#000" data-dark>
     <div class="abs a" style="left:30px; top:52px; width:1071px; height:976px; overflow:hidden; --k:zoom; --t:1.4s">
       <video src="assets/ring-flick.mp4" muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:fill"></video>
     </div>
@@ -200,18 +202,36 @@
 
   const slides = [...document.querySelectorAll('.slide')];
   const steps = slides.flatMap((s, i) => Array.from({ length: +s.dataset.steps || 1 }, (_, k) => [i, k]));
-  let cur = -1;
+  let cur = -1, curSlide = -1, prevTimer;
   function go(n) {
     n = Math.max(0, Math.min(steps.length - 1, n));
     if (n === cur) return;
     const [i, k] = steps[n];
-    slides.forEach((s, j) => s.classList.toggle('on', j === i));
+    let wait = 0;
+    if (i !== curSlide) {
+      const from = slides[curSlide], to = slides[i];
+      // 검정↔흰색처럼 대지 밝기가 바뀌면 천천히 바꾸고, 다 바뀐 뒤에 요소가 움직이기 시작
+      const swap = !!from && from.hasAttribute('data-dark') !== to.hasAttribute('data-dark');
+      const fade = swap ? .9 : .6;
+      wait = swap ? fade : 0;
+      to.style.setProperty('--fade', fade + 's');
+      to.style.setProperty('--sd', wait + 's');
+      slides.forEach(s => s.classList.remove('prev'));
+      if (from) from.classList.add('prev');
+      slides.forEach((s, j) => s.classList.toggle('on', j === i));
+      clearTimeout(prevTimer);
+      prevTimer = setTimeout(() => from && from.classList.remove('prev'), fade * 1000 + 50);
+      curSlide = i;
+    }
     if (slides[i].dataset.steps) slides[i].dataset.step = k;
     cur = n;
-    // 영상은 그 단계가 보이자마자 처음부터 재생, 벗어나면 정지
+    // 영상은 그 단계가 보이자마자(대지 전환이 끝난 뒤) 처음부터 재생, 벗어나면 정지
     document.querySelectorAll('video').forEach(v => {
       const show = v.closest('.slide') === slides[i] && (v.dataset.step === undefined || k === +v.dataset.step);
-      if (show && v.paused && !q.has('static')) { v.currentTime = 0; v.play(); } else if (!show) v.pause();
+      if (show && v.paused && !q.has('static')) {
+        v.currentTime = 0;
+        setTimeout(() => { if (steps[cur][0] === i) v.play(); }, wait * 1000);
+      } else if (!show) v.pause();
     });
     history.replaceState(null, '', '#' + (n + 1));
   }
