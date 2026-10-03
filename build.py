@@ -9,7 +9,7 @@ def parts(name):
     s = (T / f'{name}.svg').read_text()
     m = re.search(r'width="1920" height="1080" transform="translate\((-?[\d.]+) (-?[\d.]+)\)"', s)
     dx, dy = (-float(m[1]), -float(m[2])) if m else (0, 0)
-    els = re.findall(r'<path id="[^"]*"[^>]*/>|<rect [^>]*rx="14.5" fill="(?:black|white)"/>', s)
+    els = re.findall(r'<path id="[^"]*"[^>]*/>|<rect [^>]*rx="(?:14.5|19.5)" fill="(?:black|white)"/>', s)
     els = [re.sub(r'^<path id="[^"]*"', '<path', e) for e in els]  # 피그마 레이어 이름 id 가 페이지 id 와 겹치지 않게
     return dx, dy, els
 
