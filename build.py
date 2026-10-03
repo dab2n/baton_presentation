@@ -22,7 +22,7 @@ def g(els, dx=0, dy=0, cls='a', style=''):
     return f'<g class="{cls}"{st}><g transform="translate({dx:g} {dy:g})">' + ''.join(els) + '</g></g>'
 
 out = {}
-for n in ['c377', 'c378', 'c379', 'c380', 'c381', 'ringA', 'ringB', 's9t', 's10a', 's10b', 's10c', 'scenpill']:
+for n in ['c377', 'c378', 'c379', 'c380', 'c381', 'ringA', 'ringB', 's9t', 's10a', 's10b', 's10c', 'scenpill', 'scenintro']:
     dx, dy, els = parts(n)
     out[n] = ''.join(els) if n.startswith('ring') else g(els, dx, dy)
     out[n + '_xy'] = f'{dx:g} {dy:g}'
@@ -49,7 +49,7 @@ grp = {}
 for el in els:
     x = float(re.search(r'(?:d="M\s*|x=")(-?[\d.]+)', el)[1]); y = first_y(el)
     grp.setdefault((0 if x < 659 else 1 if x < 1273 else 2, y > 470), []).append(el)
-out['scenes'] = ''.join(g(grp[(c, t)], cls='st', style=f'--d:{1.3 + c * 0.15 + t * 0.2:.2f}s') for c in range(3) for t in (False, True))
+out['scenes'] = ''.join(g(grp[(c, t)], cls='st', style=f'--d:{1.3 + c * 0.2 + t * 0.2:.2f}s') for c in range(3) for t in (False, True))
 
 html = (root / 'template.html').read_text()
 html = re.sub(r'<!--T:(\w+)-->', lambda m: out[m[1]], html)
