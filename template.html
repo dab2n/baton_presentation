@@ -22,6 +22,7 @@
   @keyframes pop  { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
   @keyframes grow { from { opacity: 0; transform: scaleX(.2); } to { opacity: 1; transform: none; } }
   @keyframes walk { from { opacity: 0; transform: translateX(120px); } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
+  @keyframes walk2 { from { opacity: 0; transform: translateX(50px); } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
   @keyframes soft { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
   @keyframes fromleft { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: none; } }
   @keyframes zoom { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
@@ -71,12 +72,12 @@
     <svg class="full" viewBox="0 0 1920 1080" style="--k:fade; --t:1.2s">
       <!--T:c380--><!--T:c381-->
     </svg>
-    <div class="abs a" style="left:904.6436px; top:459.9416px; width:226.9057px; height:576.6236px; --d:.55s; --t:1.3s">
+    <div class="abs a" style="left:904.6436px; top:459.9416px; width:226.9057px; height:576.6236px; --k:walk2; --t:1.9s; --e:cubic-bezier(.25, .6, .3, 1); --d:.5s">
       <img src="assets/nav.png" style="left:2.8166px; top:1.0728px; width:221.273px; height:574.478px; transform: rotate(.56deg);" alt="baton 로봇">
     </div>
     <img class="a" src="assets/c-e1.svg" style="left:1129.9px; top:941.9px; width:223.2px; height:62.2px; --k:fade; --d:1.3s" alt="">
     <img class="a" src="assets/c-e2.svg" style="left:1374.9px; top:943.9px; width:195.2px; height:50.2px; --k:fade; --d:1.3s" alt="">
-    <img class="a" src="assets/woman.png" style="left:1087px; top:159px; width:441px; height:825px; --k:walk; --t:2.8s; --e:cubic-bezier(.3, .1, .2, 1); --d:.5s" alt="걷는 사용자">
+    <img class="a" src="assets/woman.png" style="left:1087px; top:159px; width:441px; height:825px; --k:walk; --t:1.9s; --e:cubic-bezier(.25, .6, .3, 1); --d:.5s" alt="걷는 사용자">
   </section>
 
   <!-- 2 목차 -->
@@ -136,7 +137,7 @@
 </linearGradient>
 </defs>
 </svg><svg x="340.99" y="92" width="228" height="102" viewBox="0 0 228 102" overflow="visible"><defs><filter id="cuWob" x="-10%" y="-25%" width="120%" height="150%"><feTurbulence type="fractalNoise" baseFrequency="0.016 0.04" numOctaves="2" seed="7" result="n"><animate attributeName="baseFrequency" values="0.016 0.04;0.021 0.034;0.017 0.045;0.016 0.04" dur="11s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="12" xChannelSelector="R" yChannelSelector="G"><animate attributeName="scale" values="9;16;9" dur="7s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/></feDisplacementMap></filter><filter id="cuBlur" x="0" y="0" width="228" height="102" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="10"/></filter><clipPath id="cuStroke"><path d="M206 45.0083H204C204 46.0623 203.566 47.4133 202.47 49.0454C201.383 50.6653 199.723 52.4405 197.49 54.2995C193.026 58.0164 186.472 61.9021 178.264 65.432C161.86 72.4862 139.128 78 114 78V80V82C139.682 82 162.95 76.3715 179.844 69.1066C188.284 65.4769 195.203 61.4089 200.05 57.3735C202.473 55.3564 204.428 53.3059 205.791 51.2749C207.147 49.256 208 47.131 208 45.0083H206ZM114 80V78C88.8717 78 66.1401 72.4862 49.7363 65.432C41.528 61.9021 34.9737 58.0164 30.5095 54.2995C28.2767 52.4405 26.6172 50.6653 25.5296 49.0454C24.434 47.4133 24 46.0623 24 45.0083H22H20C20 47.131 20.8532 49.256 22.2086 51.2749C23.5721 53.3059 25.5274 55.3564 27.9501 57.3735C32.7969 61.4089 39.7156 65.4769 48.1561 69.1066C65.0497 76.3715 88.3182 82 114 82V80ZM22 45.0083H24C24 42.9748 25.6961 40.4653 30.2477 37.774C34.6657 35.1617 41.1918 32.7399 49.4314 30.6792C65.8799 26.5656 88.7092 24 114 24V22V20C88.4806 20 65.3099 22.585 48.4609 26.7987C40.0518 28.9018 33.1048 31.4378 28.2119 34.3308C23.4527 37.1449 20 40.6882 20 45.0083H22ZM114 22V24C139.291 24 162.12 26.5656 178.569 30.6792C186.808 32.7399 193.334 35.1617 197.752 37.774C202.304 40.4653 204 42.9748 204 45.0083H206H208C208 40.6882 204.547 37.1449 199.788 34.3308C194.895 31.4378 187.948 28.9018 179.539 26.7987C162.69 22.585 139.519 20 114 20V22Z"/></clipPath></defs><g filter="url(#cuWob)"><g filter="url(#cuBlur)"><path d="M206 45.0083C206 57.7154 164.81 80 114 80C63.1898 80 22 57.7154 22 45.0083C22 32.3012 63.1898 22 114 22C164.81 22 206 32.3012 206 45.0083Z" fill="white"/><foreignObject x="0" y="0" width="228" height="102" clip-path="url(#cuStroke)"><div xmlns="http://www.w3.org/1999/xhtml" style="width:228px;height:102px;background:conic-gradient(from 180deg at 114px 45.0083px, rgb(254,241,100), rgb(200,238,255))"></div></foreignObject></g></g></svg></svg></div><div class="abs" style="left:-.5px; top:-.5px; width:909px; height:389px; box-sizing:border-box; border:1px solid #e0e0e0; border-radius:50.5px;"></div></div>
-    <svg class="full bi" viewBox="0 0 1920 1080" style="--d:2s"><g transform="translate(1008 847)"><!--T:ringB--></g></svg>
+    <svg class="full bi" viewBox="0 0 1920 1080" style="--d:.75s"><g transform="translate(1008 847)"><!--T:ringB--></g></svg>
   </section>
 
   <!-- 6·7 바톤 (클릭 한 번 더 → 영상으로 dissolve) -->
@@ -155,7 +156,7 @@
   <!-- 9 Grip, and Drop: 반지 영상 + 인터랙션 -->
   <section class="slide" style="background:#000">
     <div class="abs a" style="left:30px; top:52px; width:1071px; height:976px; overflow:hidden; --k:zoom; --t:1.4s">
-      <video src="assets/ring-flick.mp4" muted loop playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:fill"></video>
+      <video src="assets/ring-flick.mp4" muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:fill"></video>
     </div>
     <div class="abs" style="left:1142px; top:0; width:778px; height:1080px; box-sizing:border-box; border-left:1px solid #2b2b2b; overflow:clip;">
       <div class="abs" style="left:71px; top:-48px; width:706px; height:1128px; background:#000"></div>
@@ -168,17 +169,17 @@
   <!-- 10 로봇 3종 -->
   <section class="slide">
     <div class="abs a" style="left:46px; top:46px; width:601px; height:988px; border-radius:50px; overflow:hidden; background:#f9f9f9; --k:rise; --t:1.4s; --d:0.15s">
-      <img src="assets/s10-nav.png" style="left:48px; top:168px; width:501px; height:820px;" alt="">
+      <img src="assets/s10-nav.png" style="left:48px; top:201.5px; width:501px; height:786.5px;" alt="">
       <div class="abs" style="left:-13px; top:710px; width:628px; height:294px; filter:blur(1.78px); -webkit-backdrop-filter:blur(20.53px); backdrop-filter:blur(20.53px); -webkit-mask-image:linear-gradient(180deg,transparent,#000 35%); mask-image:linear-gradient(180deg,transparent,#000 35%); background:linear-gradient(180deg, rgba(255,248,167,0) 2.059%, rgba(255,248,167,.45) 67.981%);"></div>
     </div>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:soft; --t:1.4s; --d:0.90s"><!--T:s10a--></svg>
     <div class="abs a" style="left:659px; top:46px; width:601px; height:988px; border-radius:50px; overflow:hidden; background:#f9f9f9; --k:rise; --t:1.4s; --d:0.30s">
-      <img src="assets/s10-partner.png" style="left:33px; top:0px; width:504px; height:970px;" alt="">
+      <img src="assets/s10-partner.png" style="left:93px; top:95px; width:416.5px; height:763.5px;" alt="">
       <div class="abs" style="left:-13px; top:710px; width:628px; height:294px; filter:blur(0px); -webkit-backdrop-filter:blur(10.3px); backdrop-filter:blur(10.3px); -webkit-mask-image:linear-gradient(180deg,transparent,#000 35%); mask-image:linear-gradient(180deg,transparent,#000 35%); background:linear-gradient(180deg, rgba(255,248,167,0) 5.442%, rgba(255,248,167,.45) 69.087%);"></div>
     </div>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:soft; --t:1.4s; --d:1.05s"><!--T:s10b--></svg>
     <div class="abs a" style="left:1272px; top:46px; width:601px; height:988px; border-radius:50px; overflow:hidden; background:#f9f9f9; --k:rise; --t:1.4s; --d:0.45s">
-      <img src="assets/s10-keeper.png" style="left:28px; top:101px; width:573px; height:735px;" alt="">
+      <img src="assets/s10-keeper.png" style="left:103px; top:224px; width:395.5px; height:480.5px;" alt="">
       <div class="abs" style="left:-13px; top:710px; width:628px; height:294px; filter:blur(1.78px); -webkit-backdrop-filter:blur(20.53px); backdrop-filter:blur(20.53px); -webkit-mask-image:linear-gradient(180deg,transparent,#000 35%); mask-image:linear-gradient(180deg,transparent,#000 35%); background:linear-gradient(180deg, rgba(255,248,167,0) 2.059%, rgba(255,248,167,.45) 67.981%);"></div>
     </div>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:soft; --t:1.4s; --d:1.20s"><!--T:s10c--></svg>
