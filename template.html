@@ -15,13 +15,15 @@
 
   /* 등장 모션: .on 이 붙을 때마다 다시 재생 */
   .a { opacity: 0; }
-  .on .a { animation: var(--k, up) var(--t, 1s) cubic-bezier(.16, 1, .3, 1) var(--d, 0s) both; }
+  .on .a { animation: var(--k, up) var(--t, 1s) var(--e, cubic-bezier(.16, 1, .3, 1)) var(--d, 0s) both; }
   @keyframes up   { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
   @keyframes rise { from { opacity: 0; transform: translateY(90px); } to { opacity: 1; transform: none; } }
   @keyframes pop  { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
   @keyframes grow { from { opacity: 0; transform: scaleX(.2); } to { opacity: 1; transform: none; } }
-  @keyframes walk { from { opacity: 0; transform: translateX(180px); } to { opacity: 1; transform: none; } }
+  @keyframes walk { from { opacity: 0; transform: translateX(120px); } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
+  @keyframes soft { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes fromleft { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: none; } }
   @keyframes zoom { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
 
   /* 반지: 한 장 안에서 2단계 (전체 카드 → 그리드) */
@@ -66,7 +68,7 @@
     <svg class="full" viewBox="0 0 1920 1080" style="--k:fade; --t:1.2s">
       <!--T:c377--><!--T:c378--><!--T:c379-->
     </svg>
-    <svg class="full" viewBox="0 0 1920 1080" style="--d:.9s">
+    <svg class="full" viewBox="0 0 1920 1080" style="--k:fade; --t:1.2s">
       <!--T:c380--><!--T:c381-->
     </svg>
     <div class="abs a" style="left:904.6436px; top:459.9416px; width:226.9057px; height:576.6236px; --d:.55s; --t:1.3s">
@@ -74,7 +76,7 @@
     </div>
     <img class="a" src="assets/c-e1.svg" style="left:1129.9px; top:941.9px; width:223.2px; height:62.2px; --k:fade; --d:1.3s" alt="">
     <img class="a" src="assets/c-e2.svg" style="left:1374.9px; top:943.9px; width:195.2px; height:50.2px; --k:fade; --d:1.3s" alt="">
-    <img class="a" src="assets/woman.png" style="left:1087px; top:159px; width:441px; height:825px; --k:walk; --t:1.6s; --d:.7s" alt="걷는 사용자">
+    <img class="a" src="assets/woman.png" style="left:1087px; top:159px; width:441px; height:825px; --k:walk; --t:2.8s; --e:cubic-bezier(.3, .1, .2, 1); --d:.5s" alt="걷는 사용자">
   </section>
 
   <!-- 2 목차 -->
@@ -95,7 +97,12 @@
     <img class="a" src="assets/ov-ptr.png" style="left:1618px; top:211px; width:147px; height:286px; --d:.9s" alt="">
   </section>
 
-  <!-- 4·5 반지 (클릭 한 번 더 → 그리드로 전환) -->
+  <!-- 4 지금의 물리 로봇들 -->
+  <section class="slide">
+    <!--T:robots-->
+  </section>
+
+  <!-- 5·6 반지 (클릭 한 번 더 → 그리드로 전환) -->
   <section class="slide" id="ring" data-steps="2" data-step="0">
     <div class="abs card1 ease a" style="--k:zoom"></div>
     <div class="abs a" style="inset:0; --d:.2s; --t:1.3s"><img class="ringimg ease" src="assets/ring.png" alt="baton 반지"></div>
@@ -175,7 +182,7 @@
     });
     history.replaceState(null, '', '#' + (n + 1));
   }
-  go((parseInt(location.hash.slice(1)) || 1) - 1);
+  go(q.has('static') ? (parseInt(location.hash.slice(1)) || 1) - 1 : 0);
 
   addEventListener('keydown', e => {
     if (['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Enter'].includes(e.key)) go(cur + 1);

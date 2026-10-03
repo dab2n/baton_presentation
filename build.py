@@ -41,6 +41,7 @@ b = b[b.index('<g id="Group">') + 14:b.index('</svg>')].replace('</g>\n<defs>', 
 xs = sorted(float(x) for x in re.findall(r'<path id="Vector[^"]*" d="M([\d.]+)', b))
 b = re.sub(r'<path id="Vector[^"]*" d="M([\d.]+)', lambda m: f'<path class="a" style="--k:{"pop" if xs.index(float(m[1])) == 5 else "rise"}; --t:1.2s; --d:{0.1 + xs.index(float(m[1])) * 0.08:.2f}s" d="M{m[1]}', b)
 out['baton'] = b
+out['robots'] = (T / 'robots.svgfrag').read_text()  # 4장: 피그마 SVG 통째 (로봇 마스크 + 아웃라인 텍스트)
 
 html = (root / 'template.html').read_text()
 html = re.sub(r'<!--T:(\w+)-->', lambda m: out[m[1]], html)
