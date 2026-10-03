@@ -22,7 +22,7 @@ def g(els, dx=0, dy=0, cls='a', style=''):
     return f'<g class="{cls}"{st}><g transform="translate({dx:g} {dy:g})">' + ''.join(els) + '</g></g>'
 
 out = {}
-for n in ['c377', 'c378', 'c379', 'c380', 'c381', 'ringA', 'ringB', 's9t', 's10a', 's10b', 's10c']:
+for n in ['c377', 'c378', 'c379', 'c380', 'c381', 'ringA', 'ringB', 's9t', 's10a', 's10b', 's10c', 'scenpill']:
     dx, dy, els = parts(n)
     out[n] = ''.join(els) if n.startswith('ring') else g(els, dx, dy)
     out[n + '_xy'] = f'{dx:g} {dy:g}'
@@ -42,6 +42,14 @@ xs = sorted(float(x) for x in re.findall(r'<path id="Vector[^"]*" d="M([\d.]+)',
 b = re.sub(r'<path id="Vector[^"]*" d="M([\d.]+)', lambda m: f'<path class="a" style="--k:rise; --t:1.2s; --d:{0.1 + xs.index(float(m[1])) * 0.08:.2f}s" d="M{m[1]}', b)
 out['baton'] = b
 out['robots'] = (T / 'robots.svgfrag').read_text()  # 4장: 피그마 SVG 통째 (로봇 마스크 + 아웃라인 텍스트)
+
+# 11 Scene: 카드별로 라벨(pill) → 제목 순서로 블러가 걷히며 떠오른다
+_, _, els = parts('scenes')
+grp = {}
+for el in els:
+    x = float(re.search(r'(?:d="M\s*|x=")(-?[\d.]+)', el)[1]); y = first_y(el)
+    grp.setdefault((0 if x < 659 else 1 if x < 1273 else 2, y > 470), []).append(el)
+out['scenes'] = ''.join(g(grp[(c, t)], cls='st', style=f'--d:{1.3 + c * 0.15 + t * 0.2:.2f}s') for c in range(3) for t in (False, True))
 
 html = (root / 'template.html').read_text()
 html = re.sub(r'<!--T:(\w+)-->', lambda m: out[m[1]], html)
