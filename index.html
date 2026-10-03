@@ -325,8 +325,8 @@
       const from = slides[curSlide], to = slides[i];
       // 검정↔흰색처럼 대지 밝기가 바뀌면 천천히 바꾸고, 다 바뀐 뒤에 요소가 움직이기 시작
       const swap = !!from && from.hasAttribute('data-dark') !== to.hasAttribute('data-dark');
-      const fade = swap ? .9 : .6;
-      wait = swap ? fade + .6 : 0;
+      const fade = swap ? .9 : .4;
+      wait = swap ? fade + .6 : fade;  // 이전 장이 완전히 덮인 뒤에 새 요소 시작
       to.style.setProperty('--fade', fade + 's');
       to.style.setProperty('--sd', wait + 's');
       slides.forEach(s => s.classList.remove('prev'));
