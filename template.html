@@ -31,6 +31,7 @@
   #ring[data-step="1"] .card1 { width: 908px; }
   #ring[data-step="1"] .ringimg { transform: translate(-446px, 10px) scale(.96411, .96533); }
   .bi { opacity: 0; transform: translateY(40px); transition: opacity .5s, transform .5s; }
+  .bi.bx { transform: translateX(160px); }
   #ring[data-step="1"] .bi { opacity: 1; transform: none; transition: opacity .9s var(--d), transform 1.1s cubic-bezier(.16, 1, .3, 1) var(--d); }
 
   /* ?static : 모션 없이 최종 상태 (피그마 대조용) */
@@ -81,9 +82,9 @@
     <div class="abs card1 ease a" style="--k:zoom"></div>
     <div class="abs a" style="inset:0; --d:.2s; --t:1.3s"><img class="ringimg ease" src="assets/ring.png" alt="baton 반지"></div>
     <svg class="full bi" viewBox="0 0 1920 1080" style="--d:.7s"><g transform="translate(94 847)"><!--T:ringA--></g></svg>
-    <img class="bi" src="assets/card-hand.png" style="left:966px; top:46px; width:448px; height:588px; --d:.35s" alt="">
-    <img class="bi" src="assets/card-side.png" style="left:1426px; top:46px; width:448px; height:588px; --d:.45s" alt="">
-    <img class="bi" src="assets/card-user.png" style="left:965.5px; top:645.5px; width:909px; height:389px; --d:.55s" alt="">
+    <img class="bi bx" src="assets/card-hand.png" style="left:966px; top:46px; width:448px; height:588px; --d:.35s" alt="">
+    <img class="bi bx" src="assets/card-side.png" style="left:1426px; top:46px; width:448px; height:588px; --d:.45s" alt="">
+    <img class="bi bx" src="assets/card-user.png" style="left:965.5px; top:645.5px; width:909px; height:389px; --d:.55s" alt="">
   </section>
 
 </div>
