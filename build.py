@@ -52,14 +52,9 @@ for el in els:
     grp.setdefault((0 if x < 659 else 1 if x < 1273 else 2, y > 470), []).append(el)
 out['scenes'] = ''.join(g(grp[(c, t)], cls='st', style=f'--d:{1.3 + c * 0.2 + t * 0.2:.2f}s') for c in range(3) for t in (False, True))
 
-# 13~15 장소 장면: 라벨 → 제목 → 설명 순서로 블러가 걷히며 떠오른다
+# 13~15 장소 장면: 문구는 tools/scene_text.py 가 SF Pro +KR 로 만든 조각 (라벨 → 제목 → 설명)
 for n in ('sc1t', 'sc2t', 'sc3t'):
-    dx, dy, els = parts(n)
-    rows = [[], [], []]
-    for el in els:
-        y = first_y(el)  # 프레임 기준: 라벨 < 30 < 제목 < 140 < 설명
-        rows[0 if y < 30 else 1 if y < 150 else 2].append(el)
-    out[n] = ''.join(g(r, dx, dy, style=f'--k:blurup; --t:1.2s; --d:{0.15 + i * 0.15:.2f}s') for i, r in enumerate(rows))
+    out[n] = (T / f'{n}.svgfrag').read_text()
 
 html = (root / 'template.html').read_text()
 html = re.sub(r'<!--T:(\w+)-->', lambda m: out[m[1]], html)
