@@ -221,9 +221,10 @@
 
   <!-- 12 Scenario -->
   <section class="slide">
-    <div class="abs a" style="left:624px; top:324px; width:671px; height:671px; border-radius:100px; background:linear-gradient(180deg, #fef164 43.816%, #fffffc 100%); --k:zoom; --t:1.4s; --d:.55s"></div>
-    <img class="a" src="assets/scenario-woman.png" style="left:645px; top:229px; width:629.1px; height:846px; border-radius:100px 100px 0 100px; --k:rise; --t:1.6s; --d:.8s" alt="시나리오 인물">
+    <div class="abs a" style="left:624px; top:277px; width:671px; height:668px; border-radius:100px; background:linear-gradient(180deg, #fef164 43.816%, #fffffc 100%); --k:zoom; --t:1.4s; --d:.55s"></div>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.2s; --d:.15s"><!--T:scenpill--></svg>
+    <img class="a" src="assets/scenario-woman.png" style="left:789px; top:179px; width:485px; height:846px; border-radius:100px 100px 0 100px; --k:rise; --t:1.6s; --d:.8s" alt="시나리오 인물">
+    <img class="a" src="assets/scenario-hand.png" style="left:665px; top:899px; width:453px; height:180px; --k:rise; --t:1.6s; --d:.95s" alt="">
     <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.3s; --d:.35s"><!--T:scenintro--></svg>
   </section>
 
@@ -241,7 +242,7 @@
   <!-- 14 #2 헬스장 -->
   <section class="slide">
     <div class="abs a" style="left:1094px; top:0; width:810.297px; height:1080px; overflow:hidden; --k:fade; --t:1.4s; --d:.2s">
-      <video src="assets/sc2-ptr.mp4" muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:fill"></video>
+      <video src="assets/sc2-ptr.mp4" data-replay="1.5" muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:fill"></video>
     </div>
     <svg class="full" viewBox="0 0 1920 1080"><!--T:sc2t--></svg>
     <div class="abs a" style="inset:0; --k:rise; --t:1.5s; --d:.5s">
@@ -309,6 +310,10 @@
     });
     history.replaceState(null, '', '#' + (n + 1));
   }
+  // data-replay="초": 끝나면 그만큼 쉬었다가 처음부터 다시 (그 장에 있을 때만)
+  document.querySelectorAll('video[data-replay]').forEach(v => v.addEventListener('ended', () => setTimeout(() => {
+    if (v.closest('.slide').classList.contains('on') && v.ended) { v.currentTime = 0; v.play(); }
+  }, v.dataset.replay * 1000)));
   go(q.has('static') ? (parseInt(location.hash.slice(1)) || 1) - 1 : 0);
 
   addEventListener('keydown', e => {
