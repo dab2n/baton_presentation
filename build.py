@@ -9,7 +9,7 @@ def parts(name):
     s = (T / f'{name}.svg').read_text()
     m = re.search(r'width="1920" height="1080" transform="translate\((-?[\d.]+) (-?[\d.]+)\)"', s)
     dx, dy = (-float(m[1]), -float(m[2])) if m else (0, 0)
-    els = re.findall(r'<path id="[^"]*"[^>]*/>|<rect [^>]*rx="14.5" fill="black"/>', s)
+    els = re.findall(r'<path id="[^"]*"[^>]*/>|<rect [^>]*rx="14.5" fill="(?:black|white)"/>', s)
     els = [re.sub(r'^<path id="[^"]*"', '<path', e) for e in els]  # 피그마 레이어 이름 id 가 페이지 id 와 겹치지 않게
     return dx, dy, els
 
@@ -22,7 +22,7 @@ def g(els, dx=0, dy=0, cls='a', style=''):
     return f'<g class="{cls}"{st}><g transform="translate({dx:g} {dy:g})">' + ''.join(els) + '</g></g>'
 
 out = {}
-for n in ['c377', 'c378', 'c379', 'c380', 'c381', 'ringA', 'ringB']:
+for n in ['c377', 'c378', 'c379', 'c380', 'c381', 'ringA', 'ringB', 's9t', 's10a', 's10b', 's10c']:
     dx, dy, els = parts(n)
     out[n] = ''.join(els) if n.startswith('ring') else g(els, dx, dy)
     out[n + '_xy'] = f'{dx:g} {dy:g}'
