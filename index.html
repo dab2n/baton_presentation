@@ -34,6 +34,23 @@
   .bi.bx { transform: translateX(160px); }
   #ring[data-step="1"] .bi { opacity: 1; transform: none; transition: opacity .9s var(--d), transform 1.1s cubic-bezier(.16, 1, .3, 1) var(--d); }
 
+  /* 6·7 바톤: 손 이미지 → 반지 영상 dissolve, 빛 번짐이 아래로 */
+  #baton { background: #000; }
+  #baton .bg { left: 0; top: 0; width: 1920px; height: 1100px; background: #0b0b1b; transition: background 1.6s; }
+  #baton .glow { left: -524.4px; top: 0; width: 2969.8px; height: 1792.4px; transition: transform 1.8s cubic-bezier(.65, 0, .35, 1); }
+  #baton .noise { left: 0; top: 0; width: 1920px; height: 1100px; background: url(assets/noise.png); }
+  #baton .hand { left: 430.8997px; top: -110.8205px; width: 1057.492px; height: 1321.393px; mix-blend-mode: multiply; filter: brightness(var(--hb, .1)); transform: rotate(-2.01deg); }
+  .on .hand { animation: handup 3.2s cubic-bezier(.22, 1, .36, 1) .2s both; }
+  @keyframes handup { from { opacity: 0; transform: translateY(260px) rotate(-2.01deg); } to { opacity: 1; transform: rotate(-2.01deg); } }
+  #baton .handwrap, #baton .vid { transition: opacity 1.4s ease-in-out; }
+  #baton .vid { left: 854px; top: 132px; width: 212px; height: 817px; border-radius: 19px; overflow: hidden; isolation: isolate; opacity: 0; }
+  #baton .vid > * { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 19px; }
+  #baton .vid video { object-fit: fill; }
+  #baton[data-step="1"] .bg { background: #000; }
+  #baton[data-step="1"] .glow { transform: translateY(391px); }
+  #baton[data-step="1"] .handwrap { opacity: 0; }
+  #baton[data-step="1"] .vid { opacity: 1; }
+
   /* ?static : 모션 없이 최종 상태 (피그마 대조용) */
   .static * { animation: none !important; transition: none !important; }
   .static .a { opacity: 1; }
@@ -120,6 +137,19 @@
     <img class="bi bx" src="assets/card-user.png" style="left:965.5px; top:645.5px; width:909px; height:389px; --d:.55s" alt="">
   </section>
 
+  <!-- 6·7 바톤 (클릭 한 번 더 → 영상으로 dissolve) -->
+  <section class="slide" id="baton" data-steps="2" data-step="0">
+    <div class="abs bg"></div>
+    <img class="glow" src="assets/glow.svg" alt="">
+    <div class="abs noise"></div>
+    <div class="abs handwrap" style="inset:0"><img class="hand" src="assets/hand.png" alt="바톤을 쥔 손"></div>
+    <div class="abs vid">
+      <video src="assets/ring-motion.mp4" muted loop playsinline preload="auto"></video>
+      <div style="background: linear-gradient(180deg, rgba(0,0,0,0) 87.447%, #677a9d 100.73%); mix-blend-mode: luminosity;"></div>
+      <div style="background: linear-gradient(270deg, rgba(0,0,0,0) 95.047%, #666 100%), linear-gradient(270deg, #666 1.1793%, rgba(0,0,0,0) 4.9528%);"></div>
+    </div>
+  </section>
+
 </div>
 <script>
   const q = new URLSearchParams(location.search);
@@ -143,6 +173,11 @@
     slides.forEach((s, j) => s.classList.toggle('on', j === i));
     if (slides[i].dataset.steps) slides[i].dataset.step = k;
     cur = n;
+    // 영상은 그 단계가 보이자마자 처음부터 재생, 벗어나면 정지
+    document.querySelectorAll('video').forEach(v => {
+      const show = v.closest('.slide') === slides[i] && k === 1;
+      if (show && v.paused) { v.currentTime = 0; v.play(); } else if (!show) v.pause();
+    });
     history.replaceState(null, '', '#' + (n + 1));
   }
   go((parseInt(location.hash.slice(1)) || 1) - 1);
