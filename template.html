@@ -26,7 +26,7 @@
   @keyframes pop  { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
   @keyframes grow { from { opacity: 0; transform: scaleX(.2); } to { opacity: 1; transform: none; } }
   @keyframes walk { from { opacity: 0; transform: translateX(120px); } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
-  @keyframes walkR { from { opacity: 0; transform: translateX(-140px); } 35% { opacity: 1; } to { opacity: 1; transform: none; } }
+  @keyframes walkR { from { opacity: 0; transform: translateX(-90px); } 35% { opacity: 1; } to { opacity: 1; transform: none; } }
   @keyframes walk2 { from { opacity: 0; transform: translateX(50px); } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
   @keyframes soft { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
   @keyframes fromleft { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: none; } }
@@ -316,9 +316,11 @@
     <div class="abs a" style="left:256.23px; top:266.02px; width:478.85px; height:86.544px; --k:fade; --t:1s; --d:.85s"><img src="assets/exp-v1.svg" style="left:-.862px; top:-1.298px; width:485.27px; height:93.41px; transform:rotate(6.06deg); transform-origin:240.29px 44.57px;" alt=""></div>
     <img class="a" src="assets/exp-v2.svg" style="left:758.68px; top:373.98px; width:448.56px; height:190.27px; --k:fade; --t:1s; --d:1.2s" alt="">
     <img class="a" src="assets/exp-v3.svg" style="left:1264.7px; top:524.7px; width:360.24px; height:88.13px; --k:fade; --t:1s; --d:1.55s" alt="">
-    <!-- 사람: 왼쪽 로봇들을 거쳐 오른쪽으로 걸어 지나가는 듯 -->
-    <img class="a" src="assets/exp-woman.png" style="left:1403px; top:181px; width:517px; height:899px; --k:walkR; --t:2.4s; --e:cubic-bezier(.25, .6, .3, 1); --d:1.4s" alt="">
-    <div class="abs" style="left:1807px; top:104px; width:123px; height:1007px; background:linear-gradient(270deg, #fff, rgba(255,255,255,0));"></div>
+    <!-- 사람 + 오른쪽 경계 흐림 그라데이션을 한 덩어리로: 왼쪽 로봇들을 거쳐 오른쪽으로 지나가는 듯 -->
+    <div class="abs a" style="inset:0; --k:walkR; --t:2.4s; --e:cubic-bezier(.25, .6, .3, 1); --d:1.4s">
+      <img src="assets/exp-woman.png" style="left:1403px; top:181px; width:723px; height:899px;" alt="">
+      <div class="abs" style="left:1807px; top:104px; width:123px; height:1007px; background:linear-gradient(270deg, #fff, rgba(255,255,255,0));"></div>
+    </div>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.2s; --d:.1s"><!--T:exp_pill--></svg>
     <!--T:exp_title-->
     <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.3s; --d:.5s"><!--T:exp_sub--></svg>

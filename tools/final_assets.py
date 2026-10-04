@@ -34,7 +34,7 @@ place(DL + 'NAV 02 (1).png', 'ov2-nav.png', (181, 278, 202.88, 345), crop=(-1.03
 place('raw/src/ov-ptr.png', 'ov2-ptr.png', (1558, 133, 158, 307), crop=(-1.1836, -.0001, 3.4585, 1.0001))
 ImageOps.mirror(place(R + 'ov290_aacaef53-97b5-453d-88fc-4ea043da292a.png', 'ov2-golf.png', (1353, 204, 205, 538), crop=(-.4663, 0, 1.8654, 1.0659), save=False)).save(A + 'ov2-golf.png')  # 피그마는 크롭 후 박스째 좌우 반전
 # 17 Expansion
-place(R + 'exw_66169e05-1164-421f-ad42-f9be84c5ae67.png', 'exp-woman.png', (793.8, -12.25, 2957 * .9801, 1678 * .9801), crop=(0, 0, 1, 1), flip=True, clip=(1403, 181, 1920, 1080))
+place(R + 'exw_66169e05-1164-421f-ad42-f9be84c5ae67.png', 'exp-woman.png', (793.8, -12.25, 2957 * .9801, 1678 * .9801), crop=(0, 0, 1, 1), flip=True, clip=(1403, 181, 2126, 1080))  # 박스 끝까지(움직일 때 잘린 경계 방지)
 place(DL + 'NAV 02 (1).png', 'exp-nav.png', (111, 317, 291, 605), crop=(-3.0989, -.2371, 7.0897, 1.9145))
 place(DL + 'PTR 01 (1).png', 'exp-ptr.png', (551, 328, 351, 642), crop=(-1.6086, 0, 4.1517, 1.2752))
 place(R + 'ptr17_466c6044-66dc-447f-983c-1fd7715db5d2.png', 'exp-kpr.png', (1061, 633, 284, 358), crop=(-.6106, 0, 2.24, 1))
