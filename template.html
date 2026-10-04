@@ -411,10 +411,13 @@
     });
     history.replaceState(null, '', '#' + (n + 1));
   }
-  // 9장: 왼쪽 반지 영상이 끝나면(제스처) 오른쪽 로봇 화면 UI 재생 → 2초쯤 설명 등장
+  // 10장: 왼쪽 반지 영상의 제스처에 맞춰 오른쪽 로봇 화면 UI 재생 → 2초쯤 설명 등장
   const s9L = document.getElementById('s9flick'), s9R = document.getElementById('s9screen');
   s9R.src = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) ? 'assets/s9-screen.mov' : 'assets/s9-screen.webm';  // 투명 영상: 사파리는 HEVC, 그 외 VP9
-  s9L.addEventListener('ended', () => { if (s9L.closest('.slide').classList.contains('on')) { s9R.currentTime = 0; s9R.play(); } });
+  // 오른쪽 화면 영상은 왼쪽 반지 영상이 끝나기 약 1초 전(손을 슥 움직이는 순간)에 시작
+  const s9Start = () => { if (s9L.closest('.slide').classList.contains('on') && s9R.paused && s9R.currentTime === 0) s9R.play(); };
+  s9L.addEventListener('timeupdate', () => { if (s9L.duration && s9L.currentTime >= s9L.duration - 1) s9Start(); });
+  s9L.addEventListener('ended', s9Start);
   s9R.addEventListener('playing', () => s9R.closest('.slide').classList.add('playing'));  // 영상 시작에 맞춰 푸른 빛 상승
   // 설명은 화면 UI 영상이 2초쯤(푸른 빛이 다 올라왔을 때) 등장, ended 는 대비용
   const s9Done = () => s9R.closest('.slide').classList.add('done');
