@@ -22,7 +22,8 @@ def g(els, dx=0, dy=0, cls='a', style=''):
     return f'<g class="{cls}"{st}><g transform="translate({dx:g} {dy:g})">' + ''.join(els) + '</g></g>'
 
 out = {}
-for n in ['c377', 'c378', 'c379', 'c380', 'c381', 'ringA', 'ringB', 's9t', 's10a', 's10b', 's10c', 'scenpill', 'scenintro', 'end_thank', 'end_eod', 'end_foot1', 'end_foot2']:
+for n in ['c377', 'c378', 'c379', 'c380', 'c381', 'ringA', 'ringB', 's9t', 's10a', 's10b', 's10c', 'scenpill', 'scenintro', 'end_thank', 'end_eod', 'end_foot1', 'end_foot2',
+          'pt', 'ov_pill', 'ov_text', 'pp_pill', 'pp_text', 'ctx1', 'ctx2', 'ctx3', 'exp_pill', 'exp_sub']:
     dx, dy, els = parts(n)
     out[n] = ''.join(els) if n.startswith('ring') else g(els, dx, dy)
     out[n + '_xy'] = f'{dx:g} {dy:g}'
@@ -41,8 +42,9 @@ b = b[b.index('<g id="Group">') + 14:b.index('</svg>')].replace('</g>\n<defs>', 
 xs = sorted(float(x) for x in re.findall(r'<path id="Vector[^"]*" d="M([\d.]+)', b))
 b = re.sub(r'<path id="Vector[^"]*" d="M([\d.]+)', lambda m: f'<path class="a" style="--k:rise; --t:1.2s; --d:{0.1 + xs.index(float(m[1])) * 0.08:.2f}s" d="M{m[1]}', b)
 out['baton'] = b
-out['robots'] = (T / 'robots.svgfrag').read_text()
-out['exh'] = (T / 'exh.svgfrag').read_text()  # 전시 구성: 칩/카드별 텍스트  # 4장: 피그마 SVG 통째 (로봇 마스크 + 아웃라인 텍스트)
+out['robots'] = (T / 'robots.svgfrag').read_text()  # 4장: 피그마 SVG 통째 (로봇 마스크 + 아웃라인 텍스트)
+out['exh'] = (T / 'exh.svgfrag').read_text()  # 전시 구성: 칩/카드별 텍스트
+out['exp_title'] = (T / 'exp_title.svgfrag').read_text()  # 17 Expansion 제목 (SF Pro +KR)
 
 # 11 Scene: 카드별로 라벨(pill) → 제목 순서로 블러가 걷히며 떠오른다
 _, _, els = parts('scenes')

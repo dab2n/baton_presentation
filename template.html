@@ -44,9 +44,9 @@
   /* 6·7 바톤: 손 이미지 → 반지 영상 dissolve, 빛 번짐이 아래로 */
   #baton { background: #000; }
   #baton .bg { left: 0; top: 0; width: 1920px; height: 1100px; background: #0b0b1b; transition: background 1.6s; }
-  #baton .glow { left: -524.4px; top: 0; width: 2969.8px; height: 1792.4px; transition: transform 1.8s cubic-bezier(.65, 0, .35, 1); }
+  #baton .glow { left: -581.4px; top: -103.4px; width: 2969.8px; height: 1761.8px; transition: transform 1.8s cubic-bezier(.65, 0, .35, 1); }
   #baton .noise { left: 0; top: 0; width: 1920px; height: 1100px; background: url(assets/noise.png); }
-  #baton .hand { left: 430.8997px; top: -110.8205px; width: 1057.492px; height: 1321.393px; transform: rotate(-2.01deg); -webkit-mask-image: linear-gradient(180deg, transparent, #000 90px); mask-image: linear-gradient(180deg, transparent, #000 90px); }
+  #baton .hand { left: 429.8997px; top: -120.8205px; width: 1057.492px; height: 1321.393px; transform: rotate(-2.01deg); -webkit-mask-image: linear-gradient(180deg, transparent, #000 90px); mask-image: linear-gradient(180deg, transparent, #000 90px); }
   /* hand.png 은 피그마의 multiply + 어둡게 처리를 미리 구워둔 것 (브라우저 합성과 무관하게 항상 어둡게) */
   .on .hand { animation: handup 3.2s cubic-bezier(.22, 1, .36, 1) calc(.2s + var(--sd, 0s)) both; }
   @keyframes handup { from { opacity: 0; transform: translateY(85px) rotate(-2.01deg); } to { opacity: 1; transform: rotate(-2.01deg); } }
@@ -55,7 +55,7 @@
   #baton .vid > * { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 19px; }
   #baton .vid video { object-fit: fill; }
   #baton[data-step="1"] .bg { background: #000; }
-  #baton[data-step="1"] .glow { transform: translateY(391px); }
+  #baton[data-step="1"] .glow { transform: translate(56px, 525px); }
   #baton[data-step="1"] .handwrap { opacity: 0; }
   #baton[data-step="1"] .vid { opacity: 1; }
 
@@ -67,7 +67,7 @@
   #trio .ov { left: -13px; top: 710px; width: 628px; height: 294px; filter: blur(var(--fb)); -webkit-backdrop-filter: blur(var(--bb)); backdrop-filter: blur(var(--bb));
     -webkit-mask-image: linear-gradient(180deg, transparent, #000 103px); mask-image: linear-gradient(180deg, transparent, #000 103px);
     -webkit-mask-size: 100% calc(100% + 103px); mask-size: 100% calc(100% + 103px); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 0 0; mask-position: 0 0;
-    transition: top 1.3s cubic-bezier(.65, 0, .35, 1), height 1.3s cubic-bezier(.65, 0, .35, 1), -webkit-mask-position 1.3s cubic-bezier(.65, 0, .35, 1), mask-position 1.3s cubic-bezier(.65, 0, .35, 1), backdrop-filter 1.3s, -webkit-backdrop-filter 1.3s, filter 1.3s; }
+    transition: top 1.3s cubic-bezier(.65, 0, .35, 1), height 1.3s cubic-bezier(.65, 0, .35, 1), -webkit-mask-position 1.3s cubic-bezier(.65, 0, .35, 1), mask-position 1.3s cubic-bezier(.65, 0, .35, 1), backdrop-filter 1.3s, -webkit-backdrop-filter 1.3s, filter 1.3s, opacity .4s; }
   #trio .ov.b1 { --bb: 20.53px; --fb: 1.78px; } #trio .ov.b2 { --bb: 10.3px; --fb: 0px; }
   #trio .ov.b1 .g { background: linear-gradient(180deg, rgba(255,248,167,0) 2.059%, rgba(255,248,167,.45) 67.981%); }
   #trio .ov.b2 .g { background: linear-gradient(180deg, rgba(255,248,167,0) 5.442%, rgba(255,248,167,.45) 69.087%); }
@@ -79,7 +79,7 @@
   #trio[data-step="1"] .card { background: #fff; transition-delay: var(--cd), var(--cd), calc(.75s + var(--cd)); }
   #trio[data-step="1"] .ri { opacity: 0; transition-delay: calc(.75s + var(--cd)); }
   #trio[data-step="1"] .si { opacity: 1; transition-delay: calc(.75s + var(--cd)); }
-  #trio[data-step="1"] .ov { top: 0; height: 1004px; --bb: 7.35px; --fb: 1.78px; -webkit-mask-position: 0 -103px; mask-position: 0 -103px; transition-delay: var(--cd); }
+  #trio[data-step="1"] .ov { top: 0; height: 1004px; --bb: 7.35px; --fb: 1.78px; -webkit-mask-position: 0 -103px; mask-position: 0 -103px; opacity: 0; transition-delay: var(--cd), var(--cd), var(--cd), var(--cd), var(--cd), var(--cd), var(--cd), calc(1.3s + var(--cd)); transition-duration: 1.3s, 1.3s, 1.3s, 1.3s, 1.3s, 1.3s, 1.3s, .9s; }
   #trio[data-step="1"] .ov .g { opacity: 0; transition-delay: var(--cd); } #trio[data-step="1"] .ov .s { opacity: 1; transition-delay: var(--cd); }
   #trio[data-step="1"] .bo { opacity: 0; transform: translateY(-14px); transition-delay: var(--cd); }
   #trio[data-step="1"] .st { opacity: 1; transform: none; filter: none; transition: opacity 1s var(--d), transform 1.3s cubic-bezier(.16, 1, .3, 1) var(--d), filter 1s var(--d); }
@@ -104,7 +104,7 @@
   <section class="slide" style="background: linear-gradient(180deg, rgb(253,253,254) 54.444%, rgb(253,253,252) 60%, rgb(253,252,247) 70%, rgb(252,252,243) 80%, rgb(252,251,239) 90%, rgb(252,251,235) 100%);">
     <svg class="full" viewBox="0 0 1920 1080"><g transform="translate(346 353)"><!--T:baton--></g></svg>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:fade; --t:1.2s">
-      <!--T:c377--><!--T:c378--><!--T:c379-->
+      <!--T:c377--><!--T:c378--><!--T:c379--><!--T:pt-->
     </svg>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:fade; --t:1.2s">
       <!--T:c380--><!--T:c381-->
@@ -124,27 +124,35 @@
 
   <!-- 3 오버뷰 -->
   <section class="slide">
-    <img class="a" src="assets/ov-e1.svg" style="left:151px; top:422px; width:542px; height:75px; --k:grow; --d:.1s" alt="">
-    <img class="a" src="assets/ov-e2.svg" style="left:1186px; top:585px; width:579px; height:94px; --k:grow; --d:.3s" alt="">
-    <img class="a" src="assets/ov-e3.svg" style="left:629px; top:902.7031px; width:495px; height:73px; --k:grow; --d:.2s" alt="">
-    <div class="abs a" style="left:985px; top:797.7031px; width:86px; height:139px; background:#eaeaea; --d:.6s"></div>
-    <div class="abs a" style="left:1057px; top:797.7031px; width:18px; height:139px; background:#d9d9d9; --d:.6s"></div>
-    <img class="a" src="assets/ov-golf.png" style="left:1326px; top:278px; width:257px; height:407px; --d:.75s" alt="">
-    <img class="a" src="assets/ov-bend.png" style="left:694px; top:540px; width:249px; height:446px; --d:.55s" alt="">
-    <img class="a" src="assets/ov-walk.png" style="left:413px; top:96px; width:193px; height:364px; --d:.35s" alt="">
-    <img class="a" src="assets/ov-ptr.png" style="left:1618px; top:211px; width:147px; height:286px; --d:.9s" alt="">
+    <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.2s; --d:.1s"><!--T:ov_pill--></svg>
+    <img class="a" src="assets/ov-e3.svg" style="left:681px; top:757px; width:495px; height:73px; --k:grow; --d:.35s" alt="">
+    <img class="a" src="assets/ov2-sit.png" style="left:668.136px; top:330.5px; width:416.892px; height:530.781px; --d:.55s" alt="">
+    <img class="a" src="assets/ov2-kpr.png" style="left:910px; top:551px; width:212px; height:322px; --d:.65s" alt="">
+    <img class="a" src="assets/ov-e1.svg" style="left:100px; top:524px; width:542px; height:75px; --k:grow; --d:.2s" alt="">
+    <img class="a" src="assets/ov2-walk.png" style="left:308px; top:104px; width:264px; height:495px; --d:.4s" alt="">
+    <img class="a" src="assets/ov2-nav.png" style="left:181px; top:278px; width:202.88px; height:345px; --d:.5s" alt="">
+    <img class="a" src="assets/ov-e3.svg" style="left:1282px; top:694px; width:495px; height:73px; --k:grow; --d:.5s" alt="">
+    <img class="a" src="assets/ov2-ptr.png" style="left:1558px; top:133px; width:158px; height:307px; --d:.8s" alt="">
+    <img class="a" src="assets/ov2-golf.png" style="left:1353px; top:204px; width:205px; height:538px; --d:.7s" alt="">
+    <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.3s; --d:1s"><!--T:ov_text--></svg>
   </section>
 
-  <!-- 4 지금의 물리 로봇들 -->
+  <!-- 4 Nowadays Physical Robots -->
   <section class="slide">
     <!--T:robots-->
   </section>
 
-  <!-- 5·6 반지 (클릭 한 번 더 → 그리드로 전환) -->
+  <!-- 5 background / Painpoint -->
+  <section class="slide">
+    <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.2s; --d:.1s"><!--T:pp_pill--></svg>
+    <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.4s; --d:.4s"><!--T:pp_text--></svg>
+  </section>
+
+  <!-- 6·7 반지 (클릭 한 번 더 → 그리드로 전환) -->
   <section class="slide" id="ring" data-steps="2" data-step="0">
     <div class="abs card1 ease a" style="--k:zoom"></div>
     <div class="abs a" style="inset:0; --d:.2s; --t:1.3s"><img class="ringimg ease" src="assets/ring.png" alt="baton 반지"></div>
-    <svg class="full bi" viewBox="0 0 1920 1080" style="--d:1.9s"><g transform="translate(94 847)"><!--T:ringA--></g></svg>
+    <svg class="full bi" viewBox="0 0 1920 1080" style="--d:1.9s"><g transform="translate(82 800)"><!--T:ringA--></g></svg>
     <img class="bi bx" src="assets/card-hand.png" style="left:966px; top:46px; width:448px; height:588px; --d:.7s" alt="">
     <img class="bi bx" src="assets/card-side.png" style="left:1426px; top:46px; width:448px; height:588px; --d:.8s" alt="">
     <div class="abs bi bx" style="left:966px; top:646px; width:908px; height:388px; --d:.9s"><div class="abs" style="inset:0; border-radius:50px; overflow:hidden; background:#f9f9f9;"><img src="assets/user-glow.svg" style="left:-132px; top:29.5px; width:1173px; height:847px;" alt=""><img src="assets/ring-top.png" style="left:210px; top:0; width:488.5px; height:388px;" alt=""><svg class="abs" style="left:0; top:0; width:908px; height:388px; overflow:visible" viewBox="0 0 908 388"><svg x="166.92" y="240.28" width="575.932" height="264.811" viewBox="0 0 575.932 264.811" overflow="visible">
@@ -174,10 +182,10 @@
 </linearGradient>
 </defs>
 </svg><svg x="340.99" y="92" width="228" height="102" viewBox="0 0 228 102" overflow="visible"><defs><filter id="cuWob" x="-10%" y="-25%" width="120%" height="150%"><feTurbulence type="fractalNoise" baseFrequency="0.016 0.04" numOctaves="2" seed="7" result="n"><animate attributeName="baseFrequency" values="0.016 0.04;0.021 0.034;0.017 0.045;0.016 0.04" dur="11s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="12" xChannelSelector="R" yChannelSelector="G"><animate attributeName="scale" values="9;16;9" dur="7s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/></feDisplacementMap></filter><filter id="cuBlur" x="0" y="0" width="228" height="102" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="10"/></filter><clipPath id="cuStroke"><path d="M206 45.0083H204C204 46.0623 203.566 47.4133 202.47 49.0454C201.383 50.6653 199.723 52.4405 197.49 54.2995C193.026 58.0164 186.472 61.9021 178.264 65.432C161.86 72.4862 139.128 78 114 78V80V82C139.682 82 162.95 76.3715 179.844 69.1066C188.284 65.4769 195.203 61.4089 200.05 57.3735C202.473 55.3564 204.428 53.3059 205.791 51.2749C207.147 49.256 208 47.131 208 45.0083H206ZM114 80V78C88.8717 78 66.1401 72.4862 49.7363 65.432C41.528 61.9021 34.9737 58.0164 30.5095 54.2995C28.2767 52.4405 26.6172 50.6653 25.5296 49.0454C24.434 47.4133 24 46.0623 24 45.0083H22H20C20 47.131 20.8532 49.256 22.2086 51.2749C23.5721 53.3059 25.5274 55.3564 27.9501 57.3735C32.7969 61.4089 39.7156 65.4769 48.1561 69.1066C65.0497 76.3715 88.3182 82 114 82V80ZM22 45.0083H24C24 42.9748 25.6961 40.4653 30.2477 37.774C34.6657 35.1617 41.1918 32.7399 49.4314 30.6792C65.8799 26.5656 88.7092 24 114 24V22V20C88.4806 20 65.3099 22.585 48.4609 26.7987C40.0518 28.9018 33.1048 31.4378 28.2119 34.3308C23.4527 37.1449 20 40.6882 20 45.0083H22ZM114 22V24C139.291 24 162.12 26.5656 178.569 30.6792C186.808 32.7399 193.334 35.1617 197.752 37.774C202.304 40.4653 204 42.9748 204 45.0083H206H208C208 40.6882 204.547 37.1449 199.788 34.3308C194.895 31.4378 187.948 28.9018 179.539 26.7987C162.69 22.585 139.519 20 114 20V22Z"/></clipPath></defs><g filter="url(#cuWob)"><g filter="url(#cuBlur)"><path d="M206 45.0083C206 57.7154 164.81 80 114 80C63.1898 80 22 57.7154 22 45.0083C22 32.3012 63.1898 22 114 22C164.81 22 206 32.3012 206 45.0083Z" fill="white"/><foreignObject x="0" y="0" width="228" height="102" clip-path="url(#cuStroke)"><div xmlns="http://www.w3.org/1999/xhtml" style="width:228px;height:102px;background:conic-gradient(from 180deg at 114px 45.0083px, rgb(254,241,100), rgb(200,238,255))"></div></foreignObject></g></g></svg></svg></div><div class="abs" style="left:-.5px; top:-.5px; width:909px; height:389px; box-sizing:border-box; border:1px solid #e0e0e0; border-radius:50.5px;"></div></div>
-    <svg class="full bi" viewBox="0 0 1920 1080" style="--d:1.9s"><g transform="translate(1008 847)"><!--T:ringB--></g></svg>
+    <svg class="full bi" viewBox="0 0 1920 1080" style="--d:1.9s"><g transform="translate(1002 835)"><!--T:ringB--></g></svg>
   </section>
 
-  <!-- 6·7 바톤 (클릭 한 번 더 → 영상으로 dissolve) -->
+  <!-- 8·9 바톤 (클릭 한 번 더 → 영상으로 dissolve) -->
   <section class="slide" id="baton" data-steps="2" data-step="0" data-dark>
     <div class="abs bg"></div>
     <img class="glow" src="assets/glow.svg" alt="">
@@ -190,7 +198,7 @@
     </div>
   </section>
 
-  <!-- 9 Grip, and Drop: 반지 영상 + 인터랙션 -->
+  <!-- 10 Grip, and Drop: 반지 영상 + 인터랙션 -->
   <section class="slide" style="background:#000" data-dark>
     <div class="abs a" style="left:30px; top:52px; width:1071px; height:976px; overflow:hidden; --k:zoom; --t:1.4s">
       <video id="s9flick" src="assets/ring-flick.mp4" muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:fill"></video>
@@ -199,7 +207,7 @@
       <div class="abs" style="left:71px; top:-48px; width:706px; height:1128px; background:#000"></div>
       <img class="glowup" src="assets/s9-glow.svg" style="left:-562.53px; top:659.56px; width:1957px; height:1738px;" alt="">
       <!-- 로봇 이미지 + 화면 UI(알파 영상): 왼쪽 반지 영상이 끝나면 화면 UI 재생 -->
-      <div class="abs a" style="left:215px; top:296px; width:371px; height:784px; --k:rise; --t:1.6s; --d:.45s">
+      <div class="abs a" style="left:203px; top:318px; width:371px; height:784px; --k:rise; --t:1.6s; --d:.45s">
         <img src="assets/robot-nav-ph.png" style="left:0; top:0; width:371px; height:784px;" alt="baton 로봇">
         <video id="s9screen" data-chain muted playsinline preload="auto" style="position:absolute; left:37.4px; top:82.79px; width:297.18px; height:246.78px;"></video>
       </div>
@@ -210,7 +218,7 @@
     <svg class="full after" viewBox="0 0 1920 1080"><!--T:s9t--></svg>
   </section>
 
-  <!-- 10·11 로봇 3종 → (클릭) 하단 노란 블러가 위로 차오르며 Scene 1~3 -->
+  <!-- 11·12 로봇 3종 → (클릭) 하단 노란 블러가 위로 차오르며 Scene 1~3 -->
   <section class="slide" id="trio" data-steps="2" data-step="0">
     <div class="abs a card c1" style="--k:rise; --t:1.4s; --d:0.15s">
       <img class="ri" src="assets/s10-nav.png" style="left:48px; top:201.5px; width:501px; height:786.5px;" alt="">
@@ -230,90 +238,116 @@
       <div class="abs ov b1"><div class="g"></div><div class="s"></div></div>
     </div>
     <svg class="full bo" viewBox="0 0 1920 1080" style="--cd:.4s; --k:soft; --t:1.4s; --d:1.20s"><!--T:s10c--></svg>
-    <svg class="full" viewBox="0 0 1920 1080"><!--T:scenes--></svg>
+    <svg class="full" viewBox="0 0 1920 1080"><!--T:scenes--><g class="st" style="--d:2s"><!--T:ctx1--></g><g class="st" style="--d:2.2s"><!--T:ctx2--></g><g class="st" style="--d:2.4s"><!--T:ctx3--></g></svg>
   </section>
 
-  <!-- 12 Scenario -->
+  <!-- 13 Scenario -->
   <section class="slide">
-    <div class="abs a" style="left:624px; top:277px; width:671px; height:668px; border-radius:100px; background:linear-gradient(180deg, #fef164 43.816%, #fffffc 100%); --k:zoom; --t:1.4s; --d:.55s"></div>
+    <div class="abs a" style="left:624px; top:303px; width:671px; height:668px; border-radius:100px; background:linear-gradient(180deg, #fef164 43.816%, #fffffc 100%); --k:zoom; --t:1.4s; --d:.55s"></div>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.2s; --d:.15s"><!--T:scenpill--></svg>
     <!-- 인물 + 반지 낀 손: 피그마 그룹 그대로 한 덩어리로 움직인다 -->
     <div class="abs a" style="inset:0; --k:rise; --t:1.6s; --d:.8s">
-      <img src="assets/scenario-woman.png" style="left:789px; top:179px; width:485px; height:846px; border-radius:100px 100px 0 100px;" alt="시나리오 인물">
-      <img src="assets/scenario-hand.png" style="left:665px; top:899px; width:453px; height:180px;" alt="">
+      <img src="assets/scenario-woman.png" style="left:789px; top:205px; width:485px; height:846px; border-radius:100px 100px 0 100px;" alt="시나리오 인물">
+      <img src="assets/scenario-hand.png" style="left:665px; top:925px; width:453px; height:180px;" alt="">
     </div>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.3s; --d:.35s"><!--T:scenintro--></svg>
   </section>
 
-  <!-- 13 #1 병원 -->
+  <!-- 14 #1 병원 -->
   <section class="slide">
     <div class="abs a" style="left:1004px; top:0; width:847px; height:1080px; overflow:hidden; --k:fade; --t:1.4s; --d:.2s">
       <video src="assets/sc1-nav.mp4" muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:fill"></video>
     </div>
-    <div class="abs" style="left:993px; top:964px; width:869px; height:116px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
+    <div class="abs" style="left:271px; top:964px; width:1591px; height:116px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
     <!--T:sc1t-->
     <div class="abs a" style="inset:0; --k:rise; --t:1.5s; --d:.45s">
-      <img src="assets/sc1-shadow.svg" style="left:502.9px; top:946.9px; width:195.2px; height:55.2px; transform:scaleX(-1);" alt="">
-      <img src="assets/sc1-woman.png" style="left:404px; top:153px; width:288px; height:880px;" alt="">
+      <img src="assets/sc1-shadow.svg" style="left:502.9px; top:924.9px; width:195.2px; height:55.2px; transform:scaleX(-1);" alt="">
+      <img src="assets/sc1-woman.png" style="left:404px; top:131px; width:288px; height:880px;" alt="">
     </div>
-    <img class="a" src="assets/sc1-robot.png" style="left:678px; top:444px; width:291.786px; height:631px; --k:rise; --t:1.5s; --d:.6s" alt="">
+    <img class="a" src="assets/sc1-robot.png" style="left:678px; top:422px; width:291.786px; height:631px; --k:rise; --t:1.5s; --d:.6s" alt="">
   </section>
 
-  <!-- 14 #2 헬스장 -->
+  <!-- 15 #2 헬스장 -->
   <section class="slide">
     <div class="abs a" style="left:1094px; top:0; width:810.297px; height:1080px; overflow:hidden; --k:fade; --t:1.4s; --d:.2s">
       <video src="assets/sc2-ptr.mp4" data-replay="1.5" muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:fill"></video>
     </div>
     <!--T:sc2t-->
     <div class="abs a" style="inset:0; --k:rise; --t:1.5s; --d:.5s">
-      <img src="assets/sc2-woman.png" style="left:178.85px; top:164.57px; width:989.97px; height:1397.26px; transform:rotate(-.293deg);" alt="">
+      <img src="assets/sc2-woman.png" style="left:186.85px; top:186.75px; width:989.97px; height:1397.26px; transform:rotate(-.293deg);" alt="">
     </div>
-    <div class="abs" style="left:986px; top:896px; width:934px; height:184px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
+    <div class="abs" style="left:144px; top:896px; width:1776px; height:184px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
   </section>
 
-  <!-- 15 #3 호텔 -->
+  <!-- 16 #3 호텔 -->
   <section class="slide">
-    <div class="abs a" style="left:339px; top:591.5px; width:760px; height:433.3px; overflow:hidden; --k:rise; --t:1.5s; --d:.35s">
-      <video src="assets/sc3-kpr.mp4" muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:fill"></video>
+    <!-- 테이블(영상) + 테이블 다리를 화면 아래까지 늘인 띠 (피그마: 다리 조각 이미지 3장) -->
+    <div class="abs a" style="inset:0; --k:rise; --t:1.5s; --d:.35s">
+      <div class="abs" style="left:307.2746px; top:544.75px; width:824.448px; height:472.5px; overflow:hidden;">
+        <video src="assets/sc3-kpr.mp4" muted playsinline preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:fill"></video>
+      </div>
+      <img src="assets/sc3-leg.png" style="left:307.2746px; top:1012px; width:823.4508px; height:70px;" alt="">
     </div>
-    <img class="a" src="assets/sc3-woman.png" style="left:784px; top:0; width:1136px; height:1080px; --k:rise; --t:1.5s; --d:.55s" alt="">
-    <div class="abs" style="left:31.5px; top:844px; width:1857px; height:236px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
+    <img class="a" src="assets/sc3-woman.png" style="left:781px; top:0; width:1139px; height:1080px; --k:rise; --t:1.5s; --d:.55s" alt="">
+    <div class="abs" style="left:.5px; top:898px; width:1899px; height:182px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
     <!--T:sc3t-->
   </section>
 
-  <!-- 16 전시 구성 / 목업 -->
+  <!-- 17 Expansion: 공간을 넘어, 깊어지는 이해 -->
+  <section class="slide">
+    <div class="abs a" style="left:60px; top:516px; width:384px; height:421px; border-radius:50px; background:linear-gradient(180deg, #fef164, rgba(254,241,100,0)); --k:rise; --t:1.4s; --d:.3s"></div>
+    <div class="abs a" style="left:530px; top:562px; width:390px; height:421px; border-radius:50px; background:linear-gradient(180deg, #fef164, rgba(254,241,100,0)); --k:rise; --t:1.4s; --d:.45s"></div>
+    <div class="abs a" style="left:1000px; top:606px; width:390px; height:421px; border-radius:50px; background:linear-gradient(180deg, #fef164, rgba(254,241,100,0)); --k:rise; --t:1.4s; --d:.6s"></div>
+    <img class="a" src="assets/exp-woman.png" style="left:1403px; top:181px; width:517px; height:899px; --k:walk; --t:1.9s; --e:cubic-bezier(.25, .6, .3, 1); --d:.9s" alt="">
+    <img class="a" src="assets/exp-nav.png" style="left:111px; top:317px; width:291px; height:605px; --k:rise; --t:1.4s; --d:.35s" alt="">
+    <img class="a" src="assets/exp-ptr.png" style="left:551px; top:328px; width:351px; height:642px; --k:rise; --t:1.4s; --d:.5s" alt="">
+    <img class="a" src="assets/exp-kpr.png" style="left:1061px; top:633px; width:284px; height:358px; --k:rise; --t:1.4s; --d:.65s" alt="">
+    <!-- 로봇 사이를 잇는 점선: 왼쪽부터 차례로 -->
+    <div class="abs a" style="left:256.23px; top:266.02px; width:478.85px; height:86.544px; transform-origin:center; --k:fade; --t:1s; --d:1.2s"><img src="assets/exp-v1.svg" style="left:-.862px; top:-1.298px; width:485.27px; height:93.41px; transform:rotate(6.06deg); transform-origin:240.29px 44.57px;" alt=""></div>
+    <img class="a" src="assets/exp-v2.svg" style="left:758.68px; top:373.98px; width:448.56px; height:190.27px; --k:fade; --t:1s; --d:1.4s" alt="">
+    <img class="a" src="assets/exp-v3.svg" style="left:1264.7px; top:524.7px; width:360.24px; height:88.13px; --k:fade; --t:1s; --d:1.6s" alt="">
+    <div class="abs" style="left:1807px; top:104px; width:123px; height:1007px; background:linear-gradient(270deg, #fff, rgba(255,255,255,0));"></div>
+    <div class="abs" style="left:980px; top:828px; width:454px; height:182px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
+    <div class="abs" style="left:496px; top:788px; width:454px; height:182px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
+    <div class="abs" style="left:25px; top:740px; width:454px; height:182px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
+    <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.2s; --d:.1s"><!--T:exp_pill--></svg>
+    <!--T:exp_title-->
+    <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.3s; --d:.5s"><!--T:exp_sub--></svg>
+  </section>
+
+  <!-- 18 전시 구성 / 목업 -->
   <section class="slide">
     <img class="a" src="assets/exh-left.jpg" style="left:60px; top:203px; width:890px; height:817px; border-radius:50px; --k:rise; --t:1.4s; --d:.25s" alt="목업 전시 계획">
     <div class="abs a" style="left:970px; top:203px; width:890px; height:817px; box-sizing:border-box; border:1px solid #cfcfcf; border-radius:50px; overflow:hidden; background:#f9f9f9; --k:rise; --t:1.4s; --d:.4s">
       <img class="a" src="assets/exh-webcam.png" style="left:439px; top:217px; width:399px; height:399px; --k:soft; --t:1.3s; --d:.95s" alt="웹캠">
-      <img class="a" src="assets/exh-display.png" style="left:86px; top:288px; width:384px; height:509px; --k:soft; --t:1.3s; --d:.8s" alt="원형 디스플레이">
+      <img class="a" src="assets/exh-display.png" style="left:117px; top:319px; width:353px; height:467.909px; --k:soft; --t:1.3s; --d:.8s" alt="원형 디스플레이">
     </div>
     <!--T:exh-->
   </section>
 
   <!-- ▼ 마지막 장(E.O.D / THANK YOU): 항상 맨 끝. 새 장은 이 주석 위에 추가 ▼ -->
   <section class="slide" style="background:#000" data-dark>
-    <img class="a" src="assets/end/p01.jpg" style="left:13px; top:0px; width:307.339px; height:349.786px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.10s" alt="">
-    <img class="a" src="assets/end/p02.jpg" style="left:328.34px; top:0px; width:265.0px; height:458px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.19s" alt="">
-    <img class="a" src="assets/end/p03.jpg" style="left:13px; top:357.79px; width:307px; height:289.0px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.18s" alt="">
-    <img class="a" src="assets/end/p04.jpg" style="left:601.34px; top:0px; width:251.25px; height:328px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.28s" alt="">
-    <img class="a" src="assets/end/p05.jpg" style="left:1537px; top:323px; width:336.116px; height:420px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.62s" alt="">
-    <img class="a" src="assets/end/p06.jpg" style="left:601.34px; top:336px; width:251.949px; height:273px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.36s" alt="">
-    <img class="a" src="assets/end/p07.jpg" style="left:328.34px; top:466px; width:264.7px; height:352.933px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.30s" alt="">
-    <img class="a" src="assets/end/p08.jpg" style="left:13px; top:654.79px; width:307px; height:420.0px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.25s" alt="">
-    <img class="a" src="assets/end/p09.jpg" style="left:1250px; top:338px; width:278.25px; height:371px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.54s" alt="">
-    <img class="a" src="assets/end/p10.jpg" style="left:862px; top:232px; width:379px; height:556px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.42s" alt="">
-    <img class="a" src="assets/end/p11.jpg" style="left:863px; top:0px; width:378px; height:224px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.37s" alt="">
-    <img class="a" src="assets/end/p12.jpg" style="left:328.34px; top:826px; width:265.0px; height:254px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.38s" alt="">
-    <img class="a" src="assets/end/p13.jpg" style="left:1250px; top:0px; width:278.25px; height:330px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.46s" alt="">
-    <img class="a" src="assets/end/p14.jpg" style="left:601.34px; top:617px; width:250.695px; height:284px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.42s" alt="">
-    <img class="a" src="assets/end/p15.jpg" style="left:1536px; top:0px; width:337px; height:315px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.55s" alt="">
-    <img class="a" src="assets/end/p16.jpg" style="left:1249px; top:717px; width:278.889px; height:210px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.63s" alt="">
-    <img class="a" src="assets/end/p17.jpg" style="left:1536px; top:751px; width:336.186px; height:208px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.72s" alt="">
-    <div class="abs" style="left:0; top:0; width:1920px; height:1080px; opacity:.89; background:linear-gradient(0deg, #000 0%, rgba(0,0,0,.963) 13.048%, rgba(0,0,0,.755) 63.344%, rgba(0,0,0,0) 185.37%);"></div>
+    <img class="a" src="assets/end/p01.jpg" style="left:15px; top:0px; width:312.277px; height:361.899px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.10s" alt="">
+    <img class="a" src="assets/end/p02.jpg" style="left:335.41px; top:2.43px; width:269.257px; height:469.422px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.19s" alt="">
+    <img class="a" src="assets/end/p03.jpg" style="left:15px; top:370.03px; width:311.829px; height:293.74px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.19s" alt="">
+    <img class="a" src="assets/end/p04.jpg" style="left:612.79px; top:0px; width:255.287px; height:339.772px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.28s" alt="">
+    <img class="a" src="assets/end/p05.jpg" style="left:1563.48px; top:334.69px; width:341.516px; height:426.748px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.63s" alt="">
+    <img class="a" src="assets/end/p06.jpg" style="left:612.79px; top:347.9px; width:255.997px; height:277.386px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.36s" alt="">
+    <img class="a" src="assets/end/p07.jpg" style="left:335.41px; top:479.99px; width:268.952px; height:358.603px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.30s" alt="">
+    <img class="a" src="assets/end/p08.jpg" style="left:15px; top:671.8px; width:311.932px; height:408.2px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.26s" alt="">
+    <img class="a" src="assets/end/p09.jpg" style="left:1271.87px; top:349.93px; width:282.72px; height:376.96px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.54s" alt="">
+    <img class="a" src="assets/end/p10.jpg" style="left:877.64px; top:242.23px; width:384.842px; height:565.295px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.43s" alt="">
+    <img class="a" src="assets/end/p11.jpg" style="left:878.66px; top:0px; width:384.073px; height:234.097px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.37s" alt="">
+    <img class="a" src="assets/end/p12.jpg" style="left:328.34px; top:838.88px; width:265.0px; height:241.12px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.38s" alt="">
+    <img class="a" src="assets/end/p13.jpg" style="left:1271.87px; top:0px; width:282.72px; height:341.8px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.46s" alt="">
+    <img class="a" src="assets/end/p14.jpg" style="left:612.79px; top:633.41px; width:254.723px; height:288.563px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.43s" alt="">
+    <img class="a" src="assets/end/p15.jpg" style="left:1562.47px; top:0px; width:342.414px; height:326.562px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.55s" alt="">
+    <img class="a" src="assets/end/p16.jpg" style="left:1270.86px; top:735.02px; width:283.37px; height:213.374px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.63s" alt="">
+    <img class="a" src="assets/end/p17.jpg" style="left:1562.47px; top:769.56px; width:341.587px; height:211.342px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.73s" alt="">
+    <div class="abs" style="left:0; top:0; width:1920px; height:1080px; opacity:.89; background:linear-gradient(0deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.963) 13.048%, rgba(0,0,0,.755) 63.344%, rgba(0,0,0,0) 185.37%);"></div>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:fade; --t:1.4s; --d:1.6s"><!--T:end_foot1--><!--T:end_foot2--></svg>
-    <svg class="full" viewBox="0 0 1920 1080" style="--k:rise; --t:1.4s; --d:.95s"><!--T:end_eod--></svg>
-    <svg class="full" viewBox="0 0 1920 1080" style="--k:rise; --t:1.5s; --d:1.1s"><!--T:end_thank--></svg>
+    <svg class="full" viewBox="0 0 1920 1080" style="--k:rise; --t:1.4s; --d:.95s"><g transform="translate(0 31)"><!--T:end_eod--></g></svg>
+    <svg class="full" viewBox="0 0 1920 1080" style="--k:rise; --t:1.5s; --d:1.1s"><g transform="translate(0 31)"><!--T:end_thank--></g></svg>
   </section>
 
 </div>
