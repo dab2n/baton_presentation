@@ -26,6 +26,7 @@
   @keyframes pop  { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
   @keyframes grow { from { opacity: 0; transform: scaleX(.2); } to { opacity: 1; transform: none; } }
   @keyframes walk { from { opacity: 0; transform: translateX(120px); } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
+  @keyframes walkR { from { opacity: 0; transform: translateX(-140px); } 35% { opacity: 1; } to { opacity: 1; transform: none; } }
   @keyframes walk2 { from { opacity: 0; transform: translateX(50px); } 40% { opacity: 1; } to { opacity: 1; transform: none; } }
   @keyframes soft { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
   @keyframes fromleft { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: none; } }
@@ -295,21 +296,29 @@
 
   <!-- 17 Expansion: 공간을 넘어, 깊어지는 이해 -->
   <section class="slide">
-    <div class="abs a" style="left:60px; top:516px; width:384px; height:421px; border-radius:50px; background:linear-gradient(180deg, #fef164, rgba(254,241,100,0)); --k:rise; --t:1.4s; --d:.3s"></div>
-    <div class="abs a" style="left:530px; top:562px; width:390px; height:421px; border-radius:50px; background:linear-gradient(180deg, #fef164, rgba(254,241,100,0)); --k:rise; --t:1.4s; --d:.45s"></div>
-    <div class="abs a" style="left:1000px; top:606px; width:390px; height:421px; border-radius:50px; background:linear-gradient(180deg, #fef164, rgba(254,241,100,0)); --k:rise; --t:1.4s; --d:.6s"></div>
-    <img class="a" src="assets/exp-woman.png" style="left:1403px; top:181px; width:517px; height:899px; --k:walk; --t:1.9s; --e:cubic-bezier(.25, .6, .3, 1); --d:.9s" alt="">
-    <img class="a" src="assets/exp-nav.png" style="left:111px; top:317px; width:291px; height:605px; --k:rise; --t:1.4s; --d:.35s" alt="">
-    <img class="a" src="assets/exp-ptr.png" style="left:551px; top:328px; width:351px; height:642px; --k:rise; --t:1.4s; --d:.5s" alt="">
-    <img class="a" src="assets/exp-kpr.png" style="left:1061px; top:633px; width:284px; height:358px; --k:rise; --t:1.4s; --d:.65s" alt="">
-    <!-- 로봇 사이를 잇는 점선: 왼쪽부터 차례로 -->
-    <div class="abs a" style="left:256.23px; top:266.02px; width:478.85px; height:86.544px; transform-origin:center; --k:fade; --t:1s; --d:1.2s"><img src="assets/exp-v1.svg" style="left:-.862px; top:-1.298px; width:485.27px; height:93.41px; transform:rotate(6.06deg); transform-origin:240.29px 44.57px;" alt=""></div>
-    <img class="a" src="assets/exp-v2.svg" style="left:758.68px; top:373.98px; width:448.56px; height:190.27px; --k:fade; --t:1s; --d:1.4s" alt="">
-    <img class="a" src="assets/exp-v3.svg" style="left:1264.7px; top:524.7px; width:360.24px; height:88.13px; --k:fade; --t:1s; --d:1.6s" alt="">
+    <!-- 노란 카드 + 로봇 + 아래 흰 페이드를 한 덩어리로, 왼쪽부터 차례로 -->
+    <div class="abs a" style="inset:0; --k:rise; --t:1.4s; --d:.3s">
+      <div class="abs" style="left:60px; top:516px; width:384px; height:421px; border-radius:50px; background:linear-gradient(180deg, #fef164, rgba(254,241,100,0));"></div>
+      <img src="assets/exp-nav.png" style="left:111px; top:317px; width:291px; height:605px;" alt="">
+      <div class="abs" style="left:25px; top:740px; width:454px; height:182px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
+    </div>
+    <div class="abs a" style="inset:0; --k:rise; --t:1.4s; --d:.65s">
+      <div class="abs" style="left:530px; top:562px; width:390px; height:421px; border-radius:50px; background:linear-gradient(180deg, #fef164, rgba(254,241,100,0));"></div>
+      <img src="assets/exp-ptr.png" style="left:551px; top:328px; width:351px; height:642px;" alt="">
+      <div class="abs" style="left:496px; top:788px; width:454px; height:182px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
+    </div>
+    <div class="abs a" style="inset:0; --k:rise; --t:1.4s; --d:1s">
+      <div class="abs" style="left:1000px; top:606px; width:390px; height:421px; border-radius:50px; background:linear-gradient(180deg, #fef164, rgba(254,241,100,0));"></div>
+      <img src="assets/exp-kpr.png" style="left:1061px; top:633px; width:284px; height:358px;" alt="">
+      <div class="abs" style="left:980px; top:828px; width:454px; height:182px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
+    </div>
+    <!-- 로봇 사이 점선: 카드가 놓인 뒤 왼쪽부터 -->
+    <div class="abs a" style="left:256.23px; top:266.02px; width:478.85px; height:86.544px; --k:fade; --t:1s; --d:.85s"><img src="assets/exp-v1.svg" style="left:-.862px; top:-1.298px; width:485.27px; height:93.41px; transform:rotate(6.06deg); transform-origin:240.29px 44.57px;" alt=""></div>
+    <img class="a" src="assets/exp-v2.svg" style="left:758.68px; top:373.98px; width:448.56px; height:190.27px; --k:fade; --t:1s; --d:1.2s" alt="">
+    <img class="a" src="assets/exp-v3.svg" style="left:1264.7px; top:524.7px; width:360.24px; height:88.13px; --k:fade; --t:1s; --d:1.55s" alt="">
+    <!-- 사람: 왼쪽 로봇들을 거쳐 오른쪽으로 걸어 지나가는 듯 -->
+    <img class="a" src="assets/exp-woman.png" style="left:1403px; top:181px; width:517px; height:899px; --k:walkR; --t:2.4s; --e:cubic-bezier(.25, .6, .3, 1); --d:1.4s" alt="">
     <div class="abs" style="left:1807px; top:104px; width:123px; height:1007px; background:linear-gradient(270deg, #fff, rgba(255,255,255,0));"></div>
-    <div class="abs" style="left:980px; top:828px; width:454px; height:182px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
-    <div class="abs" style="left:496px; top:788px; width:454px; height:182px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
-    <div class="abs" style="left:25px; top:740px; width:454px; height:182px; background:linear-gradient(180deg, rgba(255,255,255,0), #fff);"></div>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.2s; --d:.1s"><!--T:exp_pill--></svg>
     <!--T:exp_title-->
     <svg class="full" viewBox="0 0 1920 1080" style="--k:blurup; --t:1.3s; --d:.5s"><!--T:exp_sub--></svg>
@@ -327,23 +336,23 @@
 
   <!-- ▼ 마지막 장(E.O.D / THANK YOU): 항상 맨 끝. 새 장은 이 주석 위에 추가 ▼ -->
   <section class="slide" style="background:#000" data-dark>
-    <img class="a" src="assets/end/p01.jpg" style="left:15px; top:0px; width:312.277px; height:361.899px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.10s" alt="">
-    <img class="a" src="assets/end/p02.jpg" style="left:335.41px; top:2.43px; width:269.257px; height:469.422px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.19s" alt="">
-    <img class="a" src="assets/end/p03.jpg" style="left:15px; top:370.03px; width:311.829px; height:293.74px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.19s" alt="">
-    <img class="a" src="assets/end/p04.jpg" style="left:612.79px; top:0px; width:255.287px; height:339.772px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.28s" alt="">
-    <img class="a" src="assets/end/p05.jpg" style="left:1563.48px; top:334.69px; width:341.516px; height:426.748px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.63s" alt="">
-    <img class="a" src="assets/end/p06.jpg" style="left:612.79px; top:347.9px; width:255.997px; height:277.386px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.36s" alt="">
-    <img class="a" src="assets/end/p07.jpg" style="left:335.41px; top:479.99px; width:268.952px; height:358.603px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.30s" alt="">
-    <img class="a" src="assets/end/p08.jpg" style="left:15px; top:671.8px; width:311.932px; height:408.2px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.26s" alt="">
-    <img class="a" src="assets/end/p09.jpg" style="left:1271.87px; top:349.93px; width:282.72px; height:376.96px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.54s" alt="">
-    <img class="a" src="assets/end/p10.jpg" style="left:877.64px; top:242.23px; width:384.842px; height:565.295px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.43s" alt="">
-    <img class="a" src="assets/end/p11.jpg" style="left:878.66px; top:0px; width:384.073px; height:234.097px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.37s" alt="">
-    <img class="a" src="assets/end/p12.jpg" style="left:328.34px; top:838.88px; width:265.0px; height:241.12px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.38s" alt="">
-    <img class="a" src="assets/end/p13.jpg" style="left:1271.87px; top:0px; width:282.72px; height:341.8px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.46s" alt="">
-    <img class="a" src="assets/end/p14.jpg" style="left:612.79px; top:633.41px; width:254.723px; height:288.563px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.43s" alt="">
-    <img class="a" src="assets/end/p15.jpg" style="left:1562.47px; top:0px; width:342.414px; height:326.562px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.55s" alt="">
-    <img class="a" src="assets/end/p16.jpg" style="left:1270.86px; top:735.02px; width:283.37px; height:213.374px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.63s" alt="">
-    <img class="a" src="assets/end/p17.jpg" style="left:1562.47px; top:769.56px; width:341.587px; height:211.342px; --k:photo; --t:1.6s; --e:cubic-bezier(.25,.6,.3,1); --d:0.73s" alt="">
+    <img class="a" src="assets/end/p01.jpg" style="left:15px; top:0px; width:312.277px; height:361.899px; --k:fade; --t:1.4s; --e:ease; --d:0.10s" alt="">
+    <img class="a" src="assets/end/p02.jpg" style="left:335.41px; top:2.43px; width:269.257px; height:469.422px; --k:fade; --t:1.4s; --e:ease; --d:0.19s" alt="">
+    <img class="a" src="assets/end/p03.jpg" style="left:15px; top:370.03px; width:311.829px; height:293.74px; --k:fade; --t:1.4s; --e:ease; --d:0.19s" alt="">
+    <img class="a" src="assets/end/p04.jpg" style="left:612.79px; top:0px; width:255.287px; height:339.772px; --k:fade; --t:1.4s; --e:ease; --d:0.28s" alt="">
+    <img class="a" src="assets/end/p05.jpg" style="left:1563.48px; top:334.69px; width:341.516px; height:426.748px; --k:fade; --t:1.4s; --e:ease; --d:0.63s" alt="">
+    <img class="a" src="assets/end/p06.jpg" style="left:612.79px; top:347.9px; width:255.997px; height:277.386px; --k:fade; --t:1.4s; --e:ease; --d:0.36s" alt="">
+    <img class="a" src="assets/end/p07.jpg" style="left:335.41px; top:479.99px; width:268.952px; height:358.603px; --k:fade; --t:1.4s; --e:ease; --d:0.30s" alt="">
+    <img class="a" src="assets/end/p08.jpg" style="left:15px; top:671.8px; width:311.932px; height:408.2px; --k:fade; --t:1.4s; --e:ease; --d:0.26s" alt="">
+    <img class="a" src="assets/end/p09.jpg" style="left:1271.87px; top:349.93px; width:282.72px; height:376.96px; --k:fade; --t:1.4s; --e:ease; --d:0.54s" alt="">
+    <img class="a" src="assets/end/p10.jpg" style="left:877.64px; top:242.23px; width:384.842px; height:565.295px; --k:fade; --t:1.4s; --e:ease; --d:0.43s" alt="">
+    <img class="a" src="assets/end/p11.jpg" style="left:878.66px; top:0px; width:384.073px; height:234.097px; --k:fade; --t:1.4s; --e:ease; --d:0.37s" alt="">
+    <img class="a" src="assets/end/p12.jpg" style="left:328.34px; top:838.88px; width:265.0px; height:241.12px; --k:fade; --t:1.4s; --e:ease; --d:0.38s" alt="">
+    <img class="a" src="assets/end/p13.jpg" style="left:1271.87px; top:0px; width:282.72px; height:341.8px; --k:fade; --t:1.4s; --e:ease; --d:0.46s" alt="">
+    <img class="a" src="assets/end/p14.jpg" style="left:612.79px; top:633.41px; width:254.723px; height:288.563px; --k:fade; --t:1.4s; --e:ease; --d:0.43s" alt="">
+    <img class="a" src="assets/end/p15.jpg" style="left:1562.47px; top:0px; width:342.414px; height:326.562px; --k:fade; --t:1.4s; --e:ease; --d:0.55s" alt="">
+    <img class="a" src="assets/end/p16.jpg" style="left:1270.86px; top:735.02px; width:283.37px; height:213.374px; --k:fade; --t:1.4s; --e:ease; --d:0.63s" alt="">
+    <img class="a" src="assets/end/p17.jpg" style="left:1562.47px; top:769.56px; width:341.587px; height:211.342px; --k:fade; --t:1.4s; --e:ease; --d:0.73s" alt="">
     <div class="abs" style="left:0; top:0; width:1920px; height:1080px; opacity:.89; background:linear-gradient(0deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.963) 13.048%, rgba(0,0,0,.755) 63.344%, rgba(0,0,0,0) 185.37%);"></div>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:fade; --t:1.4s; --d:1.6s"><!--T:end_foot1--><!--T:end_foot2--></svg>
     <svg class="full" viewBox="0 0 1920 1080" style="--k:rise; --t:1.4s; --d:.95s"><g transform="translate(0 31)"><!--T:end_eod--></g></svg>
